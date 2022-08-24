@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import Question from "./Question";
+import Post from "./Post";
 
-function Questions() {
+function Posts() {
   // 나중에 받아올 데이터
   let users = [{}, {}, {}];
 
   return (
     <Container>
-      {users.map((el) => {
-        return <Question />;
+      {users.map((el, idx) => {
+        return <Post key={idx} />;
       })}
     </Container>
   );
@@ -17,4 +17,4 @@ function Questions() {
 
 const Container = styled.ul``;
 
-export default Questions;
+export default Posts;
