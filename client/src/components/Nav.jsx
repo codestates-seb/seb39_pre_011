@@ -39,15 +39,19 @@ const Nav = () => {
             <NavStyle to="/">Products</NavStyle>
             <NavStyle to="/">For Teams</NavStyle>
             <Search />
-            <ButtonPrimary
-              background="#E1ECF4"
-              color="#39739D"
-              border="hsl(205,41%,63%)"
-              width="59.45px"
-            >
-              Log in
-            </ButtonPrimary>
-            <ButtonPrimary>Sign up</ButtonPrimary>
+            <NavLink to="/login">
+              <ButtonPrimary
+                background="#E1ECF4"
+                color="#39739D"
+                border="hsl(205,41%,63%)"
+                width="59.45px"
+              >
+                Log in
+              </ButtonPrimary>
+            </NavLink>
+            <NavLink to="/signup">
+              <ButtonPrimary>Sign up</ButtonPrimary>
+            </NavLink>
           </>
         )}
       </Container>
