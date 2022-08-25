@@ -59,10 +59,14 @@ const Container = styled.li`
     flex-direction: column;
     align-items: flex-end;
     gap: 5px;
-    width: 200px;
+    width: 300px;
     margin-right: 16px;
   }
-
+  .post_content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
   .post_content-info {
     display: flex;
     justify-content: space-between;
