@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
-export const ButtonPrimary = styled.button`
-  background: ${(props) => props.background || "#2584f4"};
-  color: ${(props) => props.color || "white"};
-  border-radius: 50px;
-  width: ${(props) => props.width || "143px"};
-  height: ${(props) => props.height || "50px"};
+export const ButtonLogin = styled.button`
+  background: ${(props) => props.background || "#E1ECF4"};
+  color: ${(props) => props.color || "#39739D"};
+  border-radius: 3px;
+  width: ${(props) => props.width || "59.45px"};
+  height: ${(props) => props.height || "33px"};
   transition-duration: 0.4s;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 13px;
   text-align: center;
-  margin-left: 10px;
+  padding: 8px 10.4px;
 
   &:hover {
     background-color: ${(props) => props.background || "#2863fb"};
