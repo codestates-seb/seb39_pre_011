@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-function Tags() {
-  return <Container>Tags</Container>;
+function Users() {
+  return <Container>User</Container>;
 }
 
 const Container = styled.section`
@@ -14,4 +14,4 @@ const Container = styled.section`
   border: 1px solid red;
 `;
 
-export default Tags;
+export default Users;

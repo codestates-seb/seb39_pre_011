@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Post from "./Post";
 
 function Posts() {
@@ -11,7 +12,9 @@ function Posts() {
       <div>
         <div className="title_top">
           <h1>All Questions</h1>
-          <button>Ask Question</button>
+          <Link to="ask">
+            <button>Ask Question</button>
+          </Link>
         </div>
         <div className="title_bottom">
           <div>22,919,406 questions</div>

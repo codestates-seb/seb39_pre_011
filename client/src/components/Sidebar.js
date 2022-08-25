@@ -7,7 +7,7 @@ function Sidebar() {
     <Container>
       <Link to="/">Question</Link>
       <Link to="/tags">Tags</Link>
-      <Link to="/user">Users</Link>
+      <Link to="/users">Users</Link>
     </Container>
   );
 }
