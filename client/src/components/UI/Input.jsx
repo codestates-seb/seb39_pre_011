@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input = ({ children, value, onChange }) => {
+const Input = ({ children, value, onChange, sub }) => {
   return (
     <Container>
-      <label htmlFor="title">{children}</label>
+      <Box>
+        <label htmlFor="title">{children}</label>
+        <span>{sub}</span>
+      </Box>
+
       <input defaultValue={value} onChange={onChange} />
     </Container>
   );
@@ -17,20 +21,28 @@ const Container = styled.div`
   flex-direction: column;
   width: 240px;
   height: 70px;
-  margin: 3px;
+  margin: 2px;
 
+  input {
+    height: 33px;
+    padding: 8px 9px;
+    border: 1px solid #babfc4;
+    border-radius: 3px;
+  }
+`;
+
+const Box = styled.div`
   label {
     height: 20px;
     margin: 1px 0;
     padding: 0 2px;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 600;
   }
 
-  input {
-    height: 16px;
-    padding: 7.8px 9.1px;
-    border: 1px solid #babfc4;
-    border-radius: 3px;
+  span {
+    float: right;
+    font-size: 12px;
+    color: #0074cc;
   }
 `;

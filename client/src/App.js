@@ -30,7 +30,7 @@ function App() {
           <Route path="/ask" element={<Ask />} />
           <Route path="/users:id" element={<MyPage />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </AppContainer>
     </>
   );
@@ -41,10 +41,6 @@ export default App;
 const AppContainer = styled.div`
   position: relative;
   top: 50px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh; */
+  width: 100vw;
+  height: 100%;
 `;
