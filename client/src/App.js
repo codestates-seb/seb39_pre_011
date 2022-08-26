@@ -1,5 +1,4 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import Main from "./pages/Questions";
 import Nav from "./components/Nav";
@@ -14,38 +13,38 @@ import SignUp from "./pages/SignUp";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Nav />
-        <AppContainer>
-          <Routes>
-            <Route element={<SidebarLayout />}>
-              <Route path="/" element={<Main />} />
-              <Route path="/tags" element={<Tags />} />
-              <Route path="/users" element={<Users />} />
-            </Route>
+    <div>
+      <Nav />
+      <AppContainer>
+        <Routes>
+          {/* SideBar O page */}
+          <Route element={<SidebarLayout />}>
+            <Route path="/" element={<Main />} />
+            <Route path="/tags" element={<Tags />} />
+            <Route path="/users" element={<Users />} />
+          </Route>
 
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/ask" element={<Ask />} />
-            <Route path="/detail" element={<Detail />} />
-            <Route path="/users:id" element={<MyPage />} />
-          </Routes>
-        </AppContainer>
-      </Router>
-    </>
+          {/* SideBar X page */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/ask" element={<Ask />} />
+          <Route path="/detail" element={<Detail />} />
+          <Route path="/users:id" element={<MyPage />} />
+        </Routes>
+      </AppContainer>
+    </div>
   );
 }
 
 export default App;
 
 const AppContainer = styled.div`
+  position: relative;
+  top: 50px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  margin-top: 50px;
 `;
