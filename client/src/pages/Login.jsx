@@ -57,7 +57,6 @@ const Container = styled.div`
   position: relative;
   top: 50;
   width: 100vw;
-  /* height: 90vh; */
   background-color: #f1f2f3;
   display: flex;
   flex-direction: column;
