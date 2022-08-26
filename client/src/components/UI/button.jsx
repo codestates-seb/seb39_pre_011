@@ -15,8 +15,7 @@ export const ButtonPrimary = styled.button`
   margin: 0 0 0 4px;
 
   &:hover {
-    background-color: ${(props) => props.background || "hsl(205,46%,92%)"};
-    color: ${(props) => props.color || "hsl(205,46%,32%)"};
+    opacity: 0.9;
   }
 `;
 
@@ -24,10 +23,9 @@ export const ButtonSNS = styled.button`
   background: ${(props) => props.background || "#fff"};
   color: ${(props) => props.color || "#3b4045"};
   border-radius: 5px;
-  border: 1px solid ${(props) => props.border || "#d6d9dc"};
+  border: 1px solid ${(props) => props.border || "transparent"};
   width: ${(props) => props.width || "285px"};
   height: ${(props) => props.height || "40px"};
-  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 70%);
   transition-duration: 0.4s;
   font-size: 13px;
   text-align: center;
@@ -41,7 +39,6 @@ export const ButtonSNS = styled.button`
   align-items: center;
 
   &:hover {
-    background-color: ${(props) => props.background || "hsl(205,46%,92%)"};
-    color: ${(props) => props.color || "hsl(205,46%,32%)"};
+    opacity: 0.9;
   }
 `;
