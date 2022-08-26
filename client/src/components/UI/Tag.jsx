@@ -7,6 +7,7 @@ export const Tag = styled.a`
   border-radius: 3px;
   font-size: 13px;
   cursor: pointer;
+  display: inline-block;
 
   &:hover {
     background-color: ${(props) => props.backgroundColor || "#D0E3F1"};
