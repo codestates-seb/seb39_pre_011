@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Tag } from "../ui/Tag";
 
 function Aside() {
   return (
@@ -27,19 +28,19 @@ function Aside() {
       <div className="tags">
         <h4>Related Tags</h4>
         <div>
-          <span>javascript</span>
+          <Tag>javascript</Tag>
           <span> x 241552</span>
         </div>
         <div>
-          <span>javascript</span>
+          <Tag>javascript</Tag>
           <span> x 241552</span>
         </div>
         <div>
-          <span>javascript</span>
+          <Tag>javascript</Tag>
           <span> x 241552</span>
         </div>
         <div>
-          <span>javascript</span>
+          <Tag>javascript</Tag>
           <span> x 241552</span>
         </div>
       </div>
@@ -110,13 +111,7 @@ const Container = styled.aside`
       margin: 16px 0;
       font-size: 20px;
     }
-    span:nth-child(1) {
-      color: #39739d;
-      background-color: #e1ecf4;
-      padding: 4px 6px;
-      border-radius: 3px;
-    }
-    span:nth-child(2) {
+    span {
       color: rgb(106, 115, 124);
       font-size: 12px;
     }

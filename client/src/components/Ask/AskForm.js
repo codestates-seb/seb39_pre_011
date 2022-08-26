@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { TagsInput } from "./TagsInput";
 
 function AskForm() {
+  let [title, setTitle] = useState("");
+  let [body, setBody] = useState("");
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+    console.log(title);
+  };
+
+  const handleBodyChange = (e) => {
+    setBody(e.target.value);
+    console.log(body);
+  };
+
   return (
     <Container>
       <div className="input_bgc">
@@ -16,6 +30,8 @@ function AskForm() {
             type="text"
             placeholder="e.g. Is there an R function for finding the index of an element in a vector"
             id="title"
+            name="title"
+            onChange={handleTitleChange}
           />
         </div>
         <div className="input_body">
@@ -26,14 +42,18 @@ function AskForm() {
               question
             </p>
           </label>
-          <textarea id="body"></textarea>
+          <textarea
+            id="body"
+            name="body"
+            onChange={handleBodyChange}
+          ></textarea>
         </div>
         <div className="input_tag">
           <label htmlFor="tag">
             Tags
             <p>Add up to 5 tags to describe what your question is about</p>
           </label>
-          <input type="text" placeholder="e.g. (iphone android sql)" id="tag" />
+          <TagsInput />
         </div>
       </div>
       <button>Review your question</button>
@@ -67,7 +87,7 @@ const Container = styled.div`
       font-weight: 400;
     }
   }
-  input {
+  .input_title input {
     padding: 7px;
     border: 1px solid #babfc4;
     border-radius: 3px;
@@ -78,6 +98,7 @@ const Container = styled.div`
   }
   textarea {
     border: 1px solid #babfc4;
+    border-radius: 3px;
     width: 100%;
     height: 200px;
     resize: none;
