@@ -36,6 +36,9 @@ export const ButtonSNS = styled.button`
   cursor: pointer;
   user-select: none;
   text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: ${(props) => props.background || "hsl(205,46%,92%)"};

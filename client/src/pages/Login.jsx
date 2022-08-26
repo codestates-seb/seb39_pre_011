@@ -5,6 +5,10 @@ import { ButtonPrimary, ButtonSNS } from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import { NavLink } from "react-router-dom";
 
+import { ReactComponent as GoogleImg } from "../assets/google.svg";
+import { ReactComponent as GithubImg } from "../assets/github.svg";
+import { ReactComponent as FacebookImg } from "../assets/facebook.svg";
+
 function Login() {
   return (
     <Container>
@@ -12,11 +16,16 @@ function Login() {
         <Logo />
       </NavLink>
       <SNSBox>
-        <ButtonSNS>Log in with Google</ButtonSNS>
+        <ButtonSNS>
+          <GoogleImg />
+          Log in with Google
+        </ButtonSNS>
         <ButtonSNS background="#2f3337" color="#fff">
+          <GithubImg />
           Log in with GitHub
         </ButtonSNS>
         <ButtonSNS background="#385499" color="#fff">
+          <FacebookImg />
           Log in with Facebook
         </ButtonSNS>
       </SNSBox>
@@ -50,6 +59,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  svg {
+    margin: 0 4px;
+  }
 `;
 
 const Logo = styled.div`
@@ -82,6 +95,7 @@ const LoginForm = styled.div`
 
 const Description = styled.div`
   margin-top: 12px;
+  font-size: 13px;
 `;
 
 const NavStyle = styled(NavLink)`

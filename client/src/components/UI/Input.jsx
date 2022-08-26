@@ -30,5 +30,7 @@ const Container = styled.div`
   input {
     height: 16px;
     padding: 7.8px 9.1px;
+    border: 1px solid #babfc4;
+    border-radius: 3px;
   }
 `;
