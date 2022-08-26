@@ -9,7 +9,7 @@ function Footer() {
 
 const Container = styled.footer`
   width: 100%;
-  height: 300px;
+  height: 100px;
   border: 1px solid red;
 `
 

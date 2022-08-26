@@ -39,12 +39,12 @@ function App() {
 export default App;
 
 const AppContainer = styled.div`
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* justify-content: center;
+  position: relative;
+  top: 50px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 1rem;
-  width: 100vw; */
-  /* height: 100vh; */
-  /* margin-top: 50px; */
+  width: 100%;
+  height: 100vh; */
 `;

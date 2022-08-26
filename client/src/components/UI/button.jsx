@@ -1,19 +1,47 @@
 import styled from "styled-components";
 
-export const ButtonLogin = styled.button`
-  background: ${(props) => props.background || "#E1ECF4"};
-  color: ${(props) => props.color || "#39739D"};
+export const ButtonPrimary = styled.button`
+  background: ${(props) => props.background || "#0A96FF"};
+  color: ${(props) => props.color || "#fff"};
   border-radius: 3px;
-  width: ${(props) => props.width || "59.45px"};
+  border: 1px solid ${(props) => props.border || "hsl(205,41%,63%)"};
+  width: ${(props) => props.width || "68.44px"};
   height: ${(props) => props.height || "33px"};
+  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 70%);
   transition-duration: 0.4s;
   font-size: 13px;
   text-align: center;
   padding: 8px 10.4px;
+  margin: 0 0 0 4px;
 
   &:hover {
-    background-color: ${(props) => props.background || "#2863fb"};
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: ${(props) => props.background || "hsl(205,46%,92%)"};
+    color: ${(props) => props.color || "hsl(205,46%,32%)"};
+  }
+`;
+
+export const ButtonSNS = styled.button`
+  background: ${(props) => props.background || "#fff"};
+  color: ${(props) => props.color || "#3b4045"};
+  border-radius: 5px;
+  border: 1px solid ${(props) => props.border || "#d6d9dc"};
+  width: ${(props) => props.width || "285px"};
+  height: ${(props) => props.height || "40px"};
+  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 70%);
+  transition-duration: 0.4s;
+  font-size: 13px;
+  text-align: center;
+  padding: 10.4px;
+  margin: 4px 0;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: ${(props) => props.background || "hsl(205,46%,92%)"};
+    color: ${(props) => props.color || "hsl(205,46%,32%)"};
   }
 `;
