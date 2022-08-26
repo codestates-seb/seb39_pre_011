@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { TagsInput } from "./TagsInput";
+import { TextArea, TextInput } from "./../ui/textInput";
 
 function AskForm() {
-  let [title, setTitle] = useState("");
-  let [body, setBody] = useState("");
+  const initialTags = [];
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [tags, setTags] = useState(initialTags);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -14,6 +17,20 @@ function AskForm() {
   const handleBodyChange = (e) => {
     setBody(e.target.value);
     console.log(body);
+  };
+
+  const handleSubmit = () => {
+    const date = new Date();
+    const askData = {
+      title: title,
+      body: body,
+      tags: tags,
+      vote: 0,
+      view: 0,
+      answer: [],
+      createAt: date.toLocaleString("ko-kr"),
+    };
+    console.log(askData);
   };
 
   return (
@@ -26,8 +43,7 @@ function AskForm() {
               Be specific and imagine you’re asking a question to another person
             </p>
           </label>
-          <input
-            type="text"
+          <TextInput
             placeholder="e.g. Is there an R function for finding the index of an element in a vector"
             id="title"
             name="title"
@@ -42,21 +58,17 @@ function AskForm() {
               question
             </p>
           </label>
-          <textarea
-            id="body"
-            name="body"
-            onChange={handleBodyChange}
-          ></textarea>
+          <TextArea id="body" name="body" onChange={handleBodyChange} />
         </div>
         <div className="input_tag">
           <label htmlFor="tag">
             Tags
             <p>Add up to 5 tags to describe what your question is about</p>
           </label>
-          <TagsInput />
+          <TagsInput tags={tags} setTags={setTags} />
         </div>
       </div>
-      <button>Review your question</button>
+      <button onClick={handleSubmit}>Review your question</button>
     </Container>
   );
 }
@@ -85,27 +97,6 @@ const Container = styled.div`
       font-size: 12px;
       margin: 5px 0;
       font-weight: 400;
-    }
-  }
-  .input_title input {
-    padding: 7px;
-    border: 1px solid #babfc4;
-    border-radius: 3px;
-    width: 100%;
-    &:focus {
-      outline: 1px solid #59a4de;
-    }
-  }
-  textarea {
-    border: 1px solid #babfc4;
-    border-radius: 3px;
-    width: 100%;
-    height: 200px;
-    resize: none;
-    padding: 10px;
-
-    &:focus {
-      outline: 1px solid #59a4de;
     }
   }
   button {

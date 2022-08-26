@@ -1,11 +1,7 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { Tag } from "../ui/Tag";
 
-export const TagsInput = () => {
-  const initialTags = [];
-
-  const [tags, setTags] = useState(initialTags);
+export const TagsInput = ({ tags, setTags }) => {
   const removeTags = (indexToRemove) => {
     setTags(tags.filter((_, index) => index !== indexToRemove));
   };
@@ -39,9 +35,11 @@ export const TagsInput = () => {
       </ul>
       <input
         type="text"
-        onKeyUp={(event) => (event.key === "Enter" ? addTags(event) : null)}
-        placeholder="e.g. (iphone android sql)"
         id="tag"
+        onKeyUp={(event) =>
+          event.key === "Enter" || event.key === " " ? addTags(event) : null
+        }
+        placeholder="e.g. (iphone android sql)"
       />
     </Container>
   );
