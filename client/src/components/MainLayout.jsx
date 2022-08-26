@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
-import SideBar from "./SideBar";
+import SideBar from "./Sidebar"
 
-const SidebarLayout = () => {
+const MainLayout = () => {
   return (
     <Container>
       <SideBar />
@@ -11,10 +11,10 @@ const SidebarLayout = () => {
   );
 };
 
-export default SidebarLayout;
+export default MainLayout;
 
-const Container = styled.div`
+const Container = styled.main`
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
