@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { ButtonPrimary } from "./../ui/Button";
 
 function InputAnswer() {
   return (
     <Container>
       <label htmlFor="answer">Your Answer</label>
       <textarea id="answer" />
-      <button>Post Your Answer</button>
+      <ButtonPrimary width={"auto"}>Post Your Answer</ButtonPrimary>
     </Container>
   );
 }

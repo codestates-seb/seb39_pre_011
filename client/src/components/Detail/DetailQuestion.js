@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Tag } from "./../ui/Tag";
+import { ButtonPrimary } from "./../ui/Button";
 
 function DetailQuestion() {
   return (
@@ -12,7 +14,7 @@ function DetailQuestion() {
             vel?
           </h1>
           <Link to="/ask">
-            <button>Ask Question</button>
+            <ButtonPrimary width={"auto"}>Ask Question</ButtonPrimary>
           </Link>
         </div>
         <div className="detail_info">
@@ -43,9 +45,9 @@ function DetailQuestion() {
             laboriosam dolorum, sunt fugiat. Alias, consequatur!
           </p>
           <div>
-            <span>java</span>
-            <span>javascript</span>
-            <span>nodejs</span>
+            <Tag>java</Tag>
+            <Tag>javascript</Tag>
+            <Tag>nodejs</Tag>
           </div>
           <div>
             <button>Share</button>

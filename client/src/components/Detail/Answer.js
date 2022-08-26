@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Tag } from "./../ui/Tag";
 
 function Answer() {
   return (
@@ -20,9 +21,9 @@ function Answer() {
             laboriosam dolorum, sunt fugiat. Alias, consequatur!
           </p>
           <div>
-            <span>java</span>
-            <span>javascript</span>
-            <span>nodejs</span>
+            <Tag>java</Tag>
+            <Tag>javascript</Tag>
+            <Tag>nodejs</Tag>
           </div>
           <div>
             <button>Share</button>
