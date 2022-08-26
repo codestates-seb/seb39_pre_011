@@ -19,22 +19,22 @@ export default Input;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 240px;
   height: 70px;
   margin: 2px;
 
   input {
+    width: ${(props) => props.width || "268px"};
     height: 33px;
     padding: 8px 9px;
     border: 1px solid #babfc4;
     border-radius: 3px;
+    margin-top: 5px;
   }
 `;
 
 const Box = styled.div`
   label {
     height: 20px;
-    margin: 1px 0;
     padding: 0 2px;
     font-size: 15px;
     font-weight: 600;
