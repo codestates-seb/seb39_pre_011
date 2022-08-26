@@ -1,15 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import Question from "./pages/Question";
+import Questions from "./pages/Questions";
 import Nav from "./components/Nav";
 import Ask from "./pages/Ask";
 import Detail from "./pages/Detail";
 import MyPage from "./pages/MyPage";
 import Users from "./pages/Users";
 import Tags from "./pages/Tags";
-import SidebarLayout from "./components/SidebarLayout";
+import MainLayout from "./components/MainLayout";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -17,18 +18,19 @@ function App() {
       <AppContainer>
         <Nav />
         <Routes>
-          <Route element={<SidebarLayout />}>
-            <Route path="/" element={<Question />} />
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Questions />} />
             <Route path="/tags" element={<Tags />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/detail" element={<Detail />} />
           </Route>
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/ask" element={<Ask />} />
-          <Route path="/detail" element={<Detail />} />
           <Route path="/users:id" element={<MyPage />} />
         </Routes>
+        <Footer />
       </AppContainer>
     </>
   );

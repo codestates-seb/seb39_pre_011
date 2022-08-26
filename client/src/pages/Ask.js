@@ -21,6 +21,7 @@ const Container = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
+  background-color: #f1f2f3;
 
   .question-box {
     width: 1264px;
@@ -29,6 +30,9 @@ const Container = styled.section`
   .title {
     font-size: 27px;
     padding: 60px 0;
+    background-image: url("https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368");
+    background-position: right;
+    background-repeat: no-repeat;
   }
   .form {
     display: flex;

@@ -12,6 +12,7 @@ const Container = styled.section`
   display: flex;
   gap: 24px;
   border: 1px solid red;
+  height: 1000px;
 `;
 
 export default Users;

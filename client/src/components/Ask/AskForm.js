@@ -46,30 +46,56 @@ const Container = styled.div`
 
   .input_bgc {
     padding: 16px;
+    border-radius: 3px;
     -webkit-box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
     box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
 
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+    background-color: #ffffff;
   }
   label {
     cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+
+    > P {
+      font-size: 12px;
+      margin: 5px 0;
+      font-weight: 400;
+    }
   }
   input {
     padding: 7px;
+    border: 1px solid #babfc4;
     border-radius: 3px;
     width: 100%;
+    &:focus {
+      outline: 1px solid #59a4de;
+    }
   }
   textarea {
+    border: 1px solid #babfc4;
     width: 100%;
     height: 200px;
     resize: none;
     padding: 10px;
+
+    &:focus {
+      outline: 1px solid #59a4de;
+    }
   }
   button {
     margin-top: 32px;
+    padding: 10px;
+    font-size: 13px;
+    background-color: #0074cc;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
   }
 `;
 
