@@ -38,7 +38,6 @@ function Answer() {
 
 const Container = styled.div`
   width: 100%;
-
   display: flex;
   gap: 16px;
 

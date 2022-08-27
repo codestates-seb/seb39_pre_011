@@ -17,6 +17,7 @@ const Container = styled.section`
   width: calc(100% - 164px);
   padding: 24px;
   display: flex;
+
   flex-direction: column;
   gap: 50px;
 `;

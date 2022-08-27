@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import { ReactComponent as GoogleImg } from "../assets/google.svg";
 import { ReactComponent as GithubImg } from "../assets/github.svg";
 import { ReactComponent as FacebookImg } from "../assets/facebook.svg";
+import { ReactComponent as TalentImg } from "../assets/signupTalent.svg";
 
 function Login() {
   return (
@@ -16,15 +17,15 @@ function Login() {
         <Logo />
       </NavLink>
       <SNSBox>
-        <ButtonSNS>
+        <ButtonSNS border="#d6d9dc">
           <GoogleImg />
           Log in with Google
         </ButtonSNS>
-        <ButtonSNS background="#2f3337" color="#fff">
+        <ButtonSNS background="#2f3337" color="#fff" border="#d6d9dc">
           <GithubImg />
           Log in with GitHub
         </ButtonSNS>
-        <ButtonSNS background="#385499" color="#fff">
+        <ButtonSNS background="#385499" color="#fff" border="#f1f2f3">
           <FacebookImg />
           Log in with Facebook
         </ButtonSNS>
@@ -32,7 +33,7 @@ function Login() {
 
       <LoginForm>
         <Input>Email</Input>
-        <Input>Password</Input>
+        <Input sub="Forgot passowrd?">Password</Input>
         <ButtonPrimary width="240px" height="37px">
           Log in
         </ButtonPrimary>
@@ -44,6 +45,7 @@ function Login() {
       <Description>
         Are you an employer?
         <NavStyle to="/signup"> Sign up on Talent</NavStyle>
+        <TalentImg />
       </Description>
     </Container>
   );
@@ -52,12 +54,12 @@ function Login() {
 export default Login;
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  position: relative;
+  top: 50;
+  width: 100vw;
   background-color: #f1f2f3;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 
   svg {
@@ -69,7 +71,7 @@ const Logo = styled.div`
   background: url(${LogoSrc}) no-repeat 0 1.623%;
   width: 30px;
   height: 37px;
-  margin: 1rem;
+  margin: 5rem 0 24px 0;
 `;
 
 const SNSBox = styled.div`
@@ -79,12 +81,11 @@ const SNSBox = styled.div`
 `;
 
 const LoginForm = styled.div`
+  width: 285px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 240px;
-  height: 190px;
   border-radius: 7px;
   background-color: #fff;
   box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05),
@@ -96,9 +97,13 @@ const LoginForm = styled.div`
 const Description = styled.div`
   margin-top: 12px;
   font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const NavStyle = styled(NavLink)`
   text-decoration: none;
   color: #0074cc;
+  margin-left: 3px;
 `;

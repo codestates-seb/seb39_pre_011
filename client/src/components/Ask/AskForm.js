@@ -80,7 +80,6 @@ const Container = styled.div`
     padding: 16px;
     border-radius: 3px;
     box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3);
-
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -97,6 +96,7 @@ const Container = styled.div`
       font-weight: 400;
     }
   }
+
   button {
     margin-top: 32px;
     padding: 10px;

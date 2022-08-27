@@ -75,7 +75,6 @@ const Container = styled.li`
     display: flex;
     flex-direction: column;
     gap: 8px;
-
     p {
       display: -webkit-box;
       word-wrap: break-word;

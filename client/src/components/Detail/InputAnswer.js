@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ButtonPrimary } from "./../ui/Button";
+import { ButtonPrimary } from "../ui/Button";
 import { TextArea } from "./../ui/textInput";
 
 function InputAnswer() {
@@ -34,5 +34,4 @@ function InputAnswer() {
     </>
   );
 }
-
 export default InputAnswer;

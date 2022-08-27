@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ButtonPrimary } from "./../ui/Button";
+import { ButtonPrimary } from "../ui/Button";
 
 function Detailtitle() {
   return (
