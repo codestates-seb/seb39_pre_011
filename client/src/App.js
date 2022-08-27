@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Questions from "./pages/Questions";
 import Nav from "./components/Nav";
@@ -13,6 +13,8 @@ import SignUp from "./pages/SignUp";
 import Footer from "./components/Footer";
 
 function App() {
+  const { pathname } = useLocation();
+
   return (
     <>
       <AppContainer>
@@ -30,7 +32,7 @@ function App() {
           <Route path="/ask" element={<Ask />} />
           <Route path="/users:id" element={<MyPage />} />
         </Routes>
-        {/* <Footer /> */}
+        {pathname !== "/login" && pathname !== "/signup" ? <Footer /> : null}
       </AppContainer>
     </>
   );
@@ -41,6 +43,4 @@ export default App;
 const AppContainer = styled.div`
   position: relative;
   top: 50px;
-  width: 100vw;
-  height: 100%;
 `;

@@ -1,21 +1,37 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import { ButtonPrimary } from "../ui/Button";
+import { TextArea } from "./../ui/textInput";
 
 function InputAnswer() {
+  const [answerInput, setAnswerInput] = useState("");
+
+  const handleAnswerChange = (e) => {
+    setAnswerInput(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    const date = new Date();
+    const answerData = {
+      answer: answerInput,
+      createAt: date.toLocaleString("ko-kr"),
+    };
+    console.log(answerData);
+  };
+
   return (
-    <Container>
+    <>
       <label htmlFor="answer">Your Answer</label>
-      <textarea id="answer" />
-      <button>Post Your Answer</button>
-    </Container>
+      <TextArea
+        id="answer"
+        name="answer"
+        onChange={(e) => handleAnswerChange(e)}
+      />
+      <div>
+        <ButtonPrimary width={"auto"} onClick={handleSubmit}>
+          Post Your Answer
+        </ButtonPrimary>
+      </div>
+    </>
   );
 }
-
-const Container = styled.div`
-  textarea {
-    width: 100%;
-    resize: none;
-  }
-`;
-
 export default InputAnswer;

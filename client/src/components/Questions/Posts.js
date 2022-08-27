@@ -32,7 +32,7 @@ function Posts() {
       </div>
 
       <ul>
-        {users.map((el, idx) => {
+        {users.map((_, idx) => {
           return <Post key={idx} />;
         })}
       </ul>
@@ -89,6 +89,7 @@ const Container = styled.section`
       background-color: #f8f9f9;
       border: 1px solid #9fa6ad;
       margin-left: -1px;
+      cursor: pointer;
 
       &:first-child {
         border-top-left-radius: 3px;

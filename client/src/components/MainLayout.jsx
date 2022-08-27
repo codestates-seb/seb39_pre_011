@@ -4,10 +4,12 @@ import SideBar from "./Sidebar"
 
 const MainLayout = () => {
   return (
-    <Container>
-      <SideBar />
-      <Outlet />
-    </Container>
+    <>
+      <Container>
+        <SideBar />
+        <Outlet />
+      </Container>
+    </>
   );
 };
 

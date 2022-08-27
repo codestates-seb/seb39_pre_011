@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { TagsInput } from "./TagsInput";
+import { TextArea, TextInput } from "./../ui/textInput";
 
 function AskForm() {
+  const initialTags = [];
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [tags, setTags] = useState(initialTags);
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+    console.log(title);
+  };
+
+  const handleBodyChange = (e) => {
+    setBody(e.target.value);
+    console.log(body);
+  };
+
+  const handleSubmit = () => {
+    const date = new Date();
+    const askData = {
+      title: title,
+      body: body,
+      tags: tags,
+      vote: 0,
+      view: 0,
+      answer: [],
+      createAt: date.toLocaleString("ko-kr"),
+    };
+    console.log(askData);
+  };
+
   return (
     <Container>
       <div className="input_bgc">
@@ -12,10 +43,11 @@ function AskForm() {
               Be specific and imagine you’re asking a question to another person
             </p>
           </label>
-          <input
-            type="text"
+          <TextInput
             placeholder="e.g. Is there an R function for finding the index of an element in a vector"
             id="title"
+            name="title"
+            onChange={handleTitleChange}
           />
         </div>
         <div className="input_body">
@@ -26,17 +58,17 @@ function AskForm() {
               question
             </p>
           </label>
-          <textarea id="body"></textarea>
+          <TextArea id="body" name="body" onChange={handleBodyChange} />
         </div>
         <div className="input_tag">
           <label htmlFor="tag">
             Tags
             <p>Add up to 5 tags to describe what your question is about</p>
           </label>
-          <input type="text" placeholder="e.g. (iphone android sql)" id="tag" />
+          <TagsInput tags={tags} setTags={setTags} />
         </div>
       </div>
-      <button>Review your question</button>
+      <button onClick={handleSubmit}>Review your question</button>
     </Container>
   );
 }
@@ -47,10 +79,7 @@ const Container = styled.div`
   .input_bgc {
     padding: 16px;
     border-radius: 3px;
-    -webkit-box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
-    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
-
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -67,26 +96,7 @@ const Container = styled.div`
       font-weight: 400;
     }
   }
-  input {
-    padding: 7px;
-    border: 1px solid #babfc4;
-    border-radius: 3px;
-    width: 100%;
-    &:focus {
-      outline: 1px solid #59a4de;
-    }
-  }
-  textarea {
-    border: 1px solid #babfc4;
-    width: 100%;
-    height: 200px;
-    resize: none;
-    padding: 10px;
 
-    &:focus {
-      outline: 1px solid #59a4de;
-    }
-  }
   button {
     margin-top: 32px;
     padding: 10px;

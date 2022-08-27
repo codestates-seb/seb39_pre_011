@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Tag } from "../ui/Tag";
 
 function Post() {
   return (
@@ -31,15 +32,15 @@ function Post() {
         </p>
         <div className="post_content-info">
           <div className="post_content-info-tags">
-            <a href="#">tag</a>
-            <a href="#">tag</a>
-            <a href="#">tag</a>
+            <Tag>tag</Tag>
+            <Tag>tag</Tag>
+            <Tag>tag</Tag>
           </div>
           <div className="post_content-info-user">
-            <a href="#">
-              <img src="#" alt="."></img>
+            <a href="/">
+              <img src="#" alt=" "></img>
             </a>
-            <a href="#">kimcoding</a>
+            <a href="/">kimcoding</a>
             <span>3</span>
             <span>aksed</span>
             <time>39 sec ago</time>
@@ -67,13 +68,21 @@ const Container = styled.li`
     flex-direction: column;
     align-items: flex-end;
     gap: 10px;
-    width: 300px;
+    width: 250px;
     margin-right: 16px;
   }
   .post_content {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    p {
+      display: -webkit-box;
+      word-wrap: break-word;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   .post_content-info {
     display: flex;
@@ -83,17 +92,11 @@ const Container = styled.li`
   .post_content-info-tags {
     display: flex;
     gap: 4px;
-
-    a {
-      color: #39739d;
-      background-color: #e1ecf4;
-      padding: 4px 6px;
-      border-radius: 3px;
-    }
   }
 
   .post_content-info-user {
     display: flex;
+    align-items: center;
     gap: 4px;
     font-size: 12px;
 

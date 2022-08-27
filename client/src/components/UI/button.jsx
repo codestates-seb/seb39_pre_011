@@ -12,7 +12,6 @@ export const ButtonPrimary = styled.button`
   font-size: 13px;
   text-align: center;
   padding: 8px 10.4px;
-  margin: 0 0 0 4px;
 
   &:hover {
     opacity: 0.9;
