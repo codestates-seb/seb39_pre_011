@@ -1,0 +1,25 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "custom hook에 대하여",
+      "body": "Custom Hooks are a mechanism to reuse stateful logic (such as setting up a subscription and remembering the current value), but every time you use a custom Hook, all state and effects inside of it are fully isolated.",
+      "author": "김코딩",
+      "likes": 10
+    },
+    {
+      "id": 2,
+      "title": "박해커의 삶",
+      "body": "오늘도 박해커는 열심히 코딩을 하네",
+      "author": "박해커",
+      "likes": 30
+    },
+    {
+      "id": 3,
+      "title": "안녕하세요?",
+      "body": "반갑습니다",
+      "author": "김코딩",
+      "likes": 0
+    }
+  ]
+}

@@ -20,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "json": "cd data && json-server --watch data.json --port 3001"
   },
   "eslintConfig": {
     "extends": [
