@@ -13,11 +13,13 @@ function UserInfo() {
 
 const Container = styled.div`
   background-color: #e1ecf4;
+  width: 200px;
   font-size: 12px;
   padding: 7px;
+  border-radius: 3px;
 
   .askedTime {
-    margin-bottom: 4px;
+    margin-bottom: 7px;
     color: #6a737c;
   }
 

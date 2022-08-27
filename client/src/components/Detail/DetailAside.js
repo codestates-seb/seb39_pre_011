@@ -13,15 +13,64 @@ function DetailAside() {
         >
           The Overflow Blog
         </AsideTitle>
-        <AsideContent backgroundColor={"#FBF3D5"}>
-          <div>Open source and accidental innovation</div>
-          <div>The luckiest guy in AI (Ep. 477)</div>
+        <AsideContent
+          as="ul"
+          backgroundColor={"#FDF7E2"}
+          color={"rgb(82,89,96)"}
+          border={"#F1E5BC"}
+        >
+          <li>Open source and accidental innovation</li>
+          <li>The luckiest guy in AI (Ep. 477)</li>
+        </AsideContent>
+        <AsideTitle
+          backgroundColor={"#FBF3D5"}
+          border={"#F1E5BC"}
+          weight={"700"}
+        >
+          The Overflow Blog
+        </AsideTitle>
+        <AsideContent
+          as="ul"
+          backgroundColor={"#FDF7E2"}
+          color={"rgb(82,89,96)"}
+          border={"#F1E5BC"}
+        >
+          <li>Recent site instability, major outages - July/August 2022</li>
+          <li>Please welcome Valued Associate #1301 - Emerson</li>
+          <li>Staging Ground Workflow: Question Lifecycle</li>
+          <li>Collectives Update: WSO2 launches, and Google Go sunsets</li>
+        </AsideContent>
+        <AsideTitle
+          backgroundColor={"#FBF3D5"}
+          border={"#F1E5BC"}
+          weight={"700"}
+        >
+          The Overflow Blog
+        </AsideTitle>
+        <AsideContent
+          as="ul"
+          backgroundColor={"#FDF7E2"}
+          color={"rgb(82,89,96)"}
+          border={"#F1E5BC"}
+        >
+          <li>How should we clean up the [kickstarter] tag?</li>
+          <li>
+            Should I suggest edits to transform code blocks into Stack Snippets
+            for...
+          </li>
         </AsideContent>
       </AsideContainer>
     </Container>
   );
 }
 
-const Container = styled.aside``;
+const Container = styled.aside`
+  li {
+    margin-bottom: 12px;
+  }
+  li:last-child {
+    margin-bottom: 0px;
+  }
+`;
 
 export default DetailAside;

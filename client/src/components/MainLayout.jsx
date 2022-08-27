@@ -1,12 +1,16 @@
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import SideBar from "./Sidebar"
+import Footer from './Footer';
 
 const MainLayout = () => {
   return (
     <Container>
-      <SideBar />
-      <Outlet />
+      <div className='content'>
+        <SideBar />
+        <Outlet />
+      </div>
+      <Footer />
     </Container>
   );
 };
@@ -14,7 +18,9 @@ const MainLayout = () => {
 export default MainLayout;
 
 const Container = styled.main`
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  .content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;

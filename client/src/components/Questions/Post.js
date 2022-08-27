@@ -37,10 +37,10 @@ function Post() {
             <Tag>tag</Tag>
           </div>
           <div className="post_content-info-user">
-            <a href="#">
-              <img src="#" alt="."></img>
+            <a href="/">
+              <img src="#" alt=" "></img>
             </a>
-            <a href="#">kimcoding</a>
+            <a href="/">kimcoding</a>
             <span>3</span>
             <span>aksed</span>
             <time>39 sec ago</time>
@@ -68,7 +68,7 @@ const Container = styled.li`
     flex-direction: column;
     align-items: flex-end;
     gap: 10px;
-    width: 300px;
+    width: 250px;
     margin-right: 16px;
   }
   .post_content {
@@ -97,6 +97,7 @@ const Container = styled.li`
 
   .post_content-info-user {
     display: flex;
+    align-items: center;
     gap: 4px;
     font-size: 12px;
 

@@ -42,6 +42,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
+  svg {
+    margin-right: 5px;
+  }
   div {
     padding: 8px;
     display: flex;

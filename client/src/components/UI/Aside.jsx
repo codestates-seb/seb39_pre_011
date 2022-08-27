@@ -21,6 +21,7 @@ export const AsideContent = styled.div`
   color: ${(props) => props.color || "rgb(106, 115, 124)"};
   background-color: ${(props) => props.backgroundColor || "ffffff"};
   display: ${(props) => props.display || "block"};
+  border-bottom: 1px solid ${(props) => props.border || "#d6d9dc" };
   flex-direction: column;
   align-items: center;
   gap: 20px;

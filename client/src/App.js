@@ -10,7 +10,6 @@ import Tags from "./pages/Tags";
 import MainLayout from "./components/MainLayout";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -30,7 +29,6 @@ function App() {
           <Route path="/ask" element={<Ask />} />
           <Route path="/users:id" element={<MyPage />} />
         </Routes>
-        <Footer />
       </AppContainer>
     </>
   );
