@@ -147,22 +147,22 @@
       "user_id" : "hello1",
       "title" : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, nemo?",
       "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta quasi quae minus ipsa, porro ad consequuntur voluptate praesentium. Magni cupiditate earum neque dicta fugiat. Voluptatem necessitatibus animi sed error consequatur?",
-      "tags" : ["java", "nodejs"],
+      "tags" : ["java", "nodejs", "javascript"],
       "created_at" : "",
       "updated_at" : "",
-      "vote" : 0,
-      "view" : 0
+      "vote" : 10,
+      "view" : 212
     },
     {
       "question_id" : 2,
       "user_id" : "hello2",
       "title" : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, nemo?",
       "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta quasi quae minus ipsa, porro ad consequuntur voluptate praesentium. Magni cupiditate earum neque dicta fugiat. Voluptatem necessitatibus animi sed error consequatur?",
-      "tags" : ["java", "nodejs"],
+      "tags" : ["python", "react", "nodejs"],
       "created_at" : "",
       "updated_at" : "",
-      "vote" : 0,
-      "view" : 0
+      "vote" : 7,
+      "view" : 33
     },
     {
       "question_id" : 3,

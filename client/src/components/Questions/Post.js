@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Tag } from "../ui/Tag";
 
-function Post() {
+function Post({ post }) {
   return (
     <Container>
       <div className="post_state">
         <div>
-          <span>0</span>
+          <span>{post.vote}</span>
           <span> votes</span>
         </div>
         <div className="font_color">
@@ -16,25 +16,20 @@ function Post() {
           <span> answers</span>
         </div>
         <div className="font_color">
-          <span>0</span>
+          <span>{post.view}</span>
           <span> views</span>
         </div>
       </div>
       <div className="post_content">
         <h3>
-          <Link to="/detail">Lorem ipsum dolor sit amet.</Link>
+          <Link to={`/detail/${post.question_id}`}>{post.title}</Link>
         </h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium
-          eaque ipsa vitae molestiae a libero suscipit ad, velit culpa
-          reprehenderit quae autem fugiat. Consectetur unde nihil deleniti,
-          consequatur quasi voluptatibus.
-        </p>
+        <p>{post.body}</p>
         <div className="post_content-info">
           <div className="post_content-info-tags">
-            <Tag>tag</Tag>
-            <Tag>tag</Tag>
-            <Tag>tag</Tag>
+            {post.tags.map((el, idx) => (
+              <Tag key={idx}>{el}</Tag>
+            ))}
           </div>
           <div className="post_content-info-user">
             <a href="/">

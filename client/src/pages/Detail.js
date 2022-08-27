@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 import Detailtitle from "../components/Detail/Detailtitle";
 import DetailQuestion from "../components/Detail/DetailQuestion";
 import DetailAside from "../components/Detail/DetailAside";
@@ -7,12 +8,14 @@ import Answer from "../components/Detail/Answer";
 import InputAnswer from "../components/Detail/InputAnswer";
 
 function Detail() {
+  const { question_id } = useParams();
+
   return (
     <Container>
       <Detailtitle />
       <div className="detail_main">
         <div className="detail_main-content">
-          <DetailQuestion />
+          <DetailQuestion question_id={question_id} />
           <div className="answer_count">2 Answer</div>
           <Answer />
           <InputAnswer />

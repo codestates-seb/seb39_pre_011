@@ -24,7 +24,7 @@ function App() {
             <Route path="/" element={<Questions />} />
             <Route path="/tags" element={<Tags />} />
             <Route path="/users" element={<Users />} />
-            <Route path="/detail" element={<Detail />} />
+            <Route path="/detail/:question_id" element={<Detail />} />
           </Route>
 
           <Route path="/login" element={<Login />} />

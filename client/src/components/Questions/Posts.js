@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Post from "./Post";
 
+const axios = require("axios");
+
 function Posts() {
-  // 나중에 받아올 데이터
-  let users = [{}, {}, {}, {}, {}, {}, {}, {}];
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "http://localhost:3001/question",
+    }).then((response) => {
+      setPosts(response.data);
+    });
+  }, []);
 
   return (
     <Container>
@@ -32,8 +42,8 @@ function Posts() {
       </div>
 
       <ul>
-        {users.map((_, idx) => {
-          return <Post key={idx} />;
+        {posts.map((post) => {
+          return <Post post={post} key={post.question_id} />;
         })}
       </ul>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import UserInfo from "./UserInfo";
 import { Tag } from "./../ui/Tag";
@@ -7,7 +7,22 @@ import { ReactComponent as ArrowBottom } from "./../../assets/arrowbottom.svg";
 import { ReactComponent as BookMark } from "./../../assets/bookmark.svg";
 import { ReactComponent as Time } from "./../../assets/time.svg";
 
-function DetailQuestion() {
+const axios = require("axios");
+
+function DetailQuestion({ question_id }) {
+  // 리덕스 쓰기전에 잠깐 테스트로 axios로 받아옴
+  let [data, setData] = useState(null);
+  console.log("여기");
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `http://localhost:3001/question?question_id=${question_id}`,
+    }).then((response) => {
+      setData(response.data[0]);
+      console.log(response.data[0]);
+    });
+  }, []);
+
   return (
     <Container>
       <div className="detail_aside">
