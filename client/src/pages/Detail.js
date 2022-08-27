@@ -1,20 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import Detailtitle from "../components/Detail/Detailtitle";
 import DetailQuestion from "../components/Detail/DetailQuestion";
-import Answer from "../components/Detail/Answer";
 import DetailAside from "../components/Detail/DetailAside";
+import Answer from "../components/Detail/Answer";
 import InputAnswer from "../components/Detail/InputAnswer";
 
 function Detail() {
   return (
     <Container>
-      <div className="detail_box">
-        <DetailQuestion />
-        <div>12 Answer</div>
-        <Answer />
-        <InputAnswer />
+      <Detailtitle />
+      <div className="detail_main">
+        <div className="detail_main-content">
+          <DetailQuestion />
+          <div className="answer_count">2 Answer</div>
+          <Answer />
+          <InputAnswer />
+        </div>
+        <DetailAside />
       </div>
-      <DetailAside />
     </Container>
   );
 }
@@ -23,11 +27,19 @@ const Container = styled.section`
   max-width: 1100px;
   width: calc(100% - 164px);
   padding: 24px;
-  display: flex;
-  gap: 24px;
 
-  .detail_box {
-    width: calc(100% - 300px);
+  .answer_count {
+    font-size: 19px;
+    color: #232629;
+  }
+  .detail_main {
+    display: flex;
+    gap: 24px;
+  }
+  .detail_main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 `;
 

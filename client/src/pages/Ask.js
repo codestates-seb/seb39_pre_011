@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import AskForm from "../components/Ask/AskForm";
-import AskHelp from "../components/Ask/AskHelp";
+import AskAside from "../components/Ask/AskAside";
 
 function Ask() {
   return (
@@ -10,7 +10,7 @@ function Ask() {
         <div className="title">Ask a public question</div>
         <div className="form">
           <AskForm />
-          <AskHelp />
+          <AskAside />
         </div>
       </div>
     </Container>

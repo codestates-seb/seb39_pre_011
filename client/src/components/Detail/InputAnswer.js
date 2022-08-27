@@ -1,22 +1,17 @@
 import React from "react";
-import styled from "styled-components";
 import { ButtonPrimary } from "./../ui/Button";
+import { TextArea } from "./../ui/textInput";
 
 function InputAnswer() {
   return (
-    <Container>
+    <>
       <label htmlFor="answer">Your Answer</label>
-      <textarea id="answer" />
-      <ButtonPrimary width={"auto"}>Post Your Answer</ButtonPrimary>
-    </Container>
+      <TextArea id="answer" />
+      <div>
+        <ButtonPrimary width={"auto"}>Post Your Answer</ButtonPrimary>
+      </div>
+    </>
   );
 }
-
-const Container = styled.div`
-  textarea {
-    width: 100%;
-    resize: none;
-  }
-`;
 
 export default InputAnswer;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { ReactComponent as Qicon } from "./../assets/question.svg";
 
 function Sidebar() {
   let [click, setClick] = useState(0);
@@ -23,7 +24,7 @@ function Sidebar() {
               className={click === idx ? "on" : null}
               onClick={() => clickHandler(idx)}
             >
-              {el.title}
+              {el.title === "Question" ? <Qicon /> : null} {el.title}
             </div>
           </Link>
         );
@@ -43,6 +44,8 @@ const Container = styled.div`
 
   div {
     padding: 8px;
+    display: flex;
+    align-items: center;
   }
 
   .on {

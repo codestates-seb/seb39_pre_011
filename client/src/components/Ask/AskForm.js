@@ -79,9 +79,7 @@ const Container = styled.div`
   .input_bgc {
     padding: 16px;
     border-radius: 3px;
-    -webkit-box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
-    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3);
 
     display: flex;
     flex-direction: column;
