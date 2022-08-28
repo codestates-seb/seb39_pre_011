@@ -9,7 +9,7 @@
     },
     {
       "user_id": "hello2",
-      "name" : "kim",
+      "name" : "park",
       "e-mail" : "hello@naver.com",
       "password" : "1234",
       "profile_photo" : ""
@@ -150,13 +150,13 @@
       "tags" : ["java", "nodejs", "javascript"],
       "created_at" : "",
       "updated_at" : "",
-      "vote" : 10,
+      "vote" : 11,
       "view" : 212
     },
     {
       "question_id" : 2,
       "user_id" : "hello2",
-      "title" : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, nemo?",
+      "title" : "Lorem ipsum dolor sit",
       "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta quasi quae minus ipsa, porro ad consequuntur voluptate praesentium. Magni cupiditate earum neque dicta fugiat. Voluptatem necessitatibus animi sed error consequatur?",
       "tags" : ["python", "react", "nodejs"],
       "created_at" : "",
