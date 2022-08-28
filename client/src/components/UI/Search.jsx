@@ -5,38 +5,35 @@ import { ReactComponent as SearchImg } from "../../assets/search.svg";
 const Search = () => {
   return (
     <Container>
-      <div className="search-box">
-        <SearchImg />
-        <SearchInput type="text" placeholder="Search..." />
-      </div>
+      <SearchImg />
+      <SearchInput type="text" placeholder="Search..." />
     </Container>
   );
 };
 export default Search;
 
-const Container = styled.form`
+const Container = styled.div`
   display: flex;
   justify-items: center;
   align-items: center;
-
-  .search-box {
-    position: relative;
-  }
+  width: 100%;
+  margin: 0 10px;
 
   svg {
     position: absolute;
-    margin-top: 7px;
     margin-left: 10px;
   }
 `;
 
 const SearchInput = styled.input`
-  display: inline-block;
-  box-sizing: border-box;
   border-radius: 3px;
   border: 1px solid #babfc4;
   background: #fff;
-  width: 700px;
+  width: 100%;
   height: 32px;
   padding-left: 35px;
+
+  &::placeholder {
+    color: #838c95;
+  }
 `;

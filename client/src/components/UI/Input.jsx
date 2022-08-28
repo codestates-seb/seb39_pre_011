@@ -20,21 +20,24 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 70px;
-  margin: 2px;
+  margin-top: 7px;
 
   input {
-    width: ${(props) => props.width || "268px"};
+    width: 100%;
     height: 33px;
-    padding: 8px 9px;
     border: 1px solid #babfc4;
     border-radius: 3px;
     margin-top: 5px;
+
+    ::placeholder {
+      color: red;
+      font-style: italic;
+    }
   }
 `;
 
 const Box = styled.div`
   label {
-    height: 20px;
     padding: 0 2px;
     font-size: 15px;
     font-weight: 600;

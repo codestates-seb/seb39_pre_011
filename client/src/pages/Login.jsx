@@ -32,21 +32,25 @@ function Login() {
       </SNSBox>
 
       <LoginForm>
-        <Input>Email</Input>
-        <Input sub="Forgot passowrd?">Password</Input>
-        <ButtonPrimary width="240px" height="37px">
-          Log in
-        </ButtonPrimary>
+        <LoginContent>
+          <Input>Email</Input>
+          <Input sub="Forgot passowrd?">Password</Input>
+          <ButtonPrimary width="240px" height="37px">
+            Log in
+          </ButtonPrimary>
+        </LoginContent>
       </LoginForm>
-      <Description>
-        Don't have an account?
-        <NavStyle to="/signup"> Sign up</NavStyle>
-      </Description>
-      <Description>
-        Are you an employer?
-        <NavStyle to="/signup"> Sign up on Talent</NavStyle>
-        <TalentImg />
-      </Description>
+      <BottomBox>
+        <Description>
+          Don't have an account?
+          <NavStyle to="/signup"> Sign up</NavStyle>
+        </Description>
+        <Description>
+          Are you an employer?
+          <NavStyle to="/signup"> Sign up on Talent</NavStyle>
+          <TalentImg />
+        </Description>
+      </BottomBox>
     </Container>
   );
 }
@@ -54,9 +58,8 @@ function Login() {
 export default Login;
 
 const Container = styled.div`
-  position: relative;
-  top: 50;
-  width: 100vw;
+  width: 100%;
+  height: calc(100vh - 50px);
   background-color: #f1f2f3;
   display: flex;
   flex-direction: column;
@@ -71,7 +74,7 @@ const Logo = styled.div`
   background: url(${LogoSrc}) no-repeat 0 1.623%;
   width: 30px;
   height: 37px;
-  margin: 5rem 0 24px 0;
+  margin: 4rem 0 24px 0;
 `;
 
 const SNSBox = styled.div`
@@ -94,6 +97,8 @@ const LoginForm = styled.div`
   margin-bottom: 24px;
 `;
 
+const LoginContent = styled.div``;
+
 const Description = styled.div`
   margin-top: 12px;
   font-size: 13px;
@@ -107,3 +112,5 @@ const NavStyle = styled(NavLink)`
   color: #0074cc;
   margin-left: 3px;
 `;
+
+const BottomBox = styled.div``;
