@@ -8,9 +8,10 @@ import { ReactComponent as InboxImg } from "../assets/inbox.svg";
 import { ReactComponent as AchievementsImg } from "../assets/achievements.svg";
 import { ReactComponent as HelpImg } from "../assets/help.svg";
 import { ReactComponent as LogoutImg } from "../assets/logout.svg";
+import profile from "../assets/profile.jpg";
 
 const Nav = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   return (
     <Header>
       <OragneLine />
@@ -19,40 +20,50 @@ const Nav = () => {
           <Logo />
         </NavLink>
         {isLogin ? (
-          <>
-            <NavStyle to="/">Products</NavStyle>
-            <Search />
-            <ProfileBox>
-              <img alt="profile" />
-              <span>1</span>
-            </ProfileBox>
-            <div>
+          <BoxLogin>
+            <div className="left">
+              <NavStyle to="/">Products</NavStyle>
+            </div>
+            <div className="center">
+              <Search />
+            </div>
+            <div className="right">
+              <ProfileBox>
+                <img src={profile} alt="profile" />
+                <span>1</span>
+              </ProfileBox>
               <InboxImg />
               <AchievementsImg />
               <HelpImg />
               <LogoutImg />
             </div>
-          </>
+          </BoxLogin>
         ) : (
-          <>
-            <NavStyle to="/">About</NavStyle>
-            <NavStyle to="/">Products</NavStyle>
-            <NavStyle to="/">For Teams</NavStyle>
-            <Search />
-            <NavLink to="/login">
-              <ButtonPrimary
-                background="#E1ECF4"
-                color="#39739D"
-                border="hsl(205,41%,63%)"
-                width="59.45px"
-              >
-                Log in
-              </ButtonPrimary>
-            </NavLink>
-            <NavLink to="/signup">
-              <ButtonPrimary>Sign up</ButtonPrimary>
-            </NavLink>
-          </>
+          <Box>
+            <div className="left">
+              <NavStyle to="/">About</NavStyle>
+              <NavStyle to="/">Products</NavStyle>
+              <NavStyle to="/">For Teams</NavStyle>
+            </div>
+            <div className="center">
+              <Search />
+            </div>
+            <div className="right">
+              <NavLink to="/login">
+                <ButtonPrimary
+                  background="#E1ECF4"
+                  color="#39739D"
+                  border="hsl(205,41%,63%)"
+                  width="59.45px"
+                >
+                  Log in
+                </ButtonPrimary>
+              </NavLink>
+              <NavLink to="/signup">
+                <ButtonPrimary>Sign up</ButtonPrimary>
+              </NavLink>
+            </div>
+          </Box>
         )}
       </Container>
     </Header>
@@ -69,10 +80,7 @@ const Header = styled.header`
 
   background-color: hsl(210, 8%, 97.5%);
   box-sizing: border-box;
-  min-width: auto;
-  height: 50px;
-  display: flex;
-  align-items: center;
+
   z-index: 1;
 
   box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
@@ -80,14 +88,12 @@ const Header = styled.header`
 `;
 
 const Container = styled.div`
-  width: 83%;
-  max-width: 100%;
+  width: 85%;
+  height: 50px;
 
-  height: 100%;
-  display: flex;
   margin: 0 auto;
+  display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 5px;
 
   @media only screen and (min-width: 0px) and (max-width: 1280px) {
@@ -96,19 +102,27 @@ const Container = styled.div`
 `;
 
 const ProfileBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  margin-left: 0.5rem;
+
   img {
     width: 24px;
     height: 24px;
     border-radius: 5px;
-    border: 1px solid black;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 700;
   }
 `;
 
 const OragneLine = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   width: 100%;
   height: 3px;
   background-color: #f48224;
@@ -129,4 +143,57 @@ const NavStyle = styled(NavLink)`
   font-size: 14px;
   margin: 0 10px;
   color: #525960;
+`;
+
+const Box = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .left {
+    display: flex;
+    justify-content: space-around;
+    flex: 2;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    flex: 6;
+  }
+
+  .right {
+    display: flex;
+    justify-content: space-around;
+    flex: 1;
+    gap: 5px;
+  }
+`;
+
+const BoxLogin = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .left {
+    display: flex;
+    justify-content: center;
+    flex: 0.9;
+  }
+
+  .center {
+    display: flex;
+    justify-content: flex-start;
+    flex: 7.5;
+  }
+
+  .right {
+    display: flex;
+    justify-content: space-between;
+    flex: 1.9;
+  }
 `;
