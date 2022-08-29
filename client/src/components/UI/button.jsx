@@ -10,7 +10,7 @@ export const ButtonPrimary = styled.button`
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 70%);
   font-size: 13px;
   text-align: center;
-  padding: ${(props) => props.padding || "8px 10.4px"} ;
+  padding: ${(props) => props.padding || "8px 10.4px"};
   cursor: pointer;
 
   &:hover {
@@ -38,6 +38,6 @@ export const ButtonSNS = styled.button`
   align-items: center;
 
   &:hover {
-    opacity: 0.9;
+    opacity: 1;
   }
 `;

@@ -74,9 +74,12 @@ function SignUp() {
           </ButtonSNS>
         </SNSBox>
         <SignupForm>
-          <Input>Display name</Input>
-          <Input>Email</Input>
-          <Input>Password</Input>
+          <SignupContent>
+            <Input>Display name</Input>
+            <Input>Email</Input>
+            <Input>Password</Input>
+          </SignupContent>
+
           <Description>
             Passwords must contain at least eight characters, including at least
             1 letter and 1 number.
@@ -221,4 +224,8 @@ const CheckBox = styled.div`
   input {
     margin-right: 5px;
   }
+`;
+
+const SignupContent = styled.div`
+  width: 100%;
 `;

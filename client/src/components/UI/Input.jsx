@@ -28,6 +28,7 @@ const Container = styled.div`
     border: 1px solid #babfc4;
     border-radius: 3px;
     margin-top: 5px;
+    padding: 8px 9px;
 
     ::placeholder {
       color: red;
