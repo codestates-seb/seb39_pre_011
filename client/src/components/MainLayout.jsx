@@ -6,7 +6,9 @@ const MainLayout = () => {
   return (
     <>
       <Container>
-        <SideBar />
+        <div className='sidebox'>
+          <SideBar />
+        </div>
         <Outlet />
       </Container>
     </>
@@ -19,4 +21,9 @@ const Container = styled.main`
   width: 100%;
   display: flex;
   justify-content: center;
+
+  .sidebox {
+    position: relative;
+    border-right: 1px solid #e3e6e8;
+  }
 `;

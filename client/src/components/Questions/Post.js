@@ -5,8 +5,8 @@ import { Tag } from "../ui/Tag";
 
 function Post({ post }) {
   return (
-    <Container>
-      <div className="post_state">
+    <Li>
+      <State>
         <div>
           <span>{post.vote}</span>
           <span> votes</span>
@@ -19,38 +19,58 @@ function Post({ post }) {
           <span>{post.view}</span>
           <span> views</span>
         </div>
-      </div>
-      <div className="post_content">
+      </State>
+      <Content>
         <h3>
           <Link to={`/detail/${post.question_id}`}>{post.title}</Link>
         </h3>
         <p>{post.body}</p>
-        <div className="post_content-info">
-          <div className="post_content-info-tags">
+        <div className="content-info">
+          <div className="content-info-tags">
             {post.tags.map((el, idx) => (
               <Tag key={idx}>{el}</Tag>
             ))}
           </div>
-          <div className="post_content-info-user">
+          <div className="content-info-user">
             <a href="/">
               <img src="#" alt=" "></img>
             </a>
             <a href="/">kimcoding</a>
-            <span>3</span>
+            <span className="bold">3</span>
             <span>aksed</span>
             <time>39 sec ago</time>
           </div>
         </div>
-      </div>
-    </Container>
+      </Content>
+    </Li>
   );
 }
 
-const Container = styled.li`
+const Li = styled.li`
   display: flex;
   border-bottom: 1px solid #e3e6e8;
   padding: 16px;
   font-size: 13px;
+`;
+
+const State = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  width: 100px;
+  flex-shrink: 0;
+  margin-right: 16px;
+
+  .font_color {
+    color: rgb(106, 115, 124);
+  }
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
   h3 {
     font-size: 17px;
@@ -58,38 +78,27 @@ const Container = styled.li`
       color: #0074cc;
     }
   }
-  .post_state {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-    width: 250px;
-    margin-right: 16px;
+
+  p {
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .post_content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    p {
-      display: -webkit-box;
-      word-wrap: break-word;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-  .post_content-info {
+
+  .content-info {
     display: flex;
     justify-content: space-between;
   }
 
-  .post_content-info-tags {
+  .content-info-tags {
     display: flex;
     gap: 4px;
   }
 
-  .post_content-info-user {
+  .content-info-user {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -103,10 +112,11 @@ const Container = styled.li`
     time {
       color: rgb(106, 115, 124);
     }
-  }
 
-  .font_color {
-    color: rgb(106, 115, 124);
+    .bold {
+      color: rgb(82, 89, 96);
+      font-weight: 700;
+    }
   }
 `;
 

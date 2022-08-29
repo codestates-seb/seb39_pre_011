@@ -33,3 +33,13 @@ axios({
 }).then(function (response) {
   // response Action
 });
+
+// fetch(`http://localhost:3001/blogs/${id}`, {
+//   method: "PUT",
+//   headers: { "Content-type": "application/json" },
+//   body: JSON.stringify(putdata),
+// }).then(() => {
+//   navigate(`/blogs/${blog.id}`);
+// });
+// console.log("like!");
+// }

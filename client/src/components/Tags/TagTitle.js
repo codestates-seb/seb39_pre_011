@@ -48,6 +48,7 @@ const Container = styled.div`
       background-color: #f8f9f9;
       border: 1px solid #9fa6ad;
       margin-left: -1px;
+      font-size: 12px;
       cursor: pointer;
 
       &:first-child {
