@@ -3,14 +3,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ButtonPrimary } from "../ui/Button";
 
-function Detailtitle() {
+function Detailtitle({ data }) {
   return (
     <Container>
       <div className="detail_title">
-        <h1>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat,
-          vel?
-        </h1>
+        <h1>{data.title}</h1>
         <Link to="/ask">
           <ButtonPrimary width={"auto"}>Ask Question</ButtonPrimary>
         </Link>
@@ -23,7 +20,7 @@ function Detailtitle() {
           <span>Modified</span> today
         </div>
         <div>
-          <span>Viewed</span> 3k times
+          <span>Viewed</span> {data.view} times
         </div>
       </div>
     </Container>
