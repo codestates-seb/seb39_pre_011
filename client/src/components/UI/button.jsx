@@ -8,13 +8,13 @@ export const ButtonPrimary = styled.button`
   width: ${(props) => props.width || "68.44px"};
   height: ${(props) => props.height || "33px"};
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 70%);
-  transition-duration: 0.4s;
   font-size: 13px;
   text-align: center;
-  padding: 8px 10.4px;
+  padding: ${(props) => props.padding || "8px 10.4px"} ;
+  cursor: pointer;
 
   &:hover {
-    opacity: 0.9;
+    background-color: ${(props) => props.hoverbackground || "#0074cc"};
   }
 `;
 

@@ -7,31 +7,24 @@ import { ReactComponent as ArrowBottom } from "./../../assets/arrowbottom.svg";
 import { ReactComponent as BookMark } from "./../../assets/bookmark.svg";
 import { ReactComponent as Time } from "./../../assets/time.svg";
 
-function DetailQuestion() {
+function DetailQuestion({ data }) {
   return (
     <Container>
       <div className="detail_aside">
         <ArrowTop />
-        <span>10</span>
+        <span>{data.vote}</span>
         <ArrowBottom />
         <BookMark />
         <Time />
       </div>
       <div className="detail_content">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos,
-          aperiam suscipit! In beatae tempora, voluptate veritatis, tenetur
-          temporibus quaerat accusamus soluta obcaecati consequuntur sequi
-          laboriosam dolorum, sunt fugiat. Alias, consequatur! Lorem ipsum dolor
-          sit amet, consectetur adipisicing elit. Quos, aperiam suscipit! In
-          beatae tempora, voluptate veritatis, tenetur temporibus quaerat
-          accusamus soluta obcaecati consequuntur sequi laboriosam dolorum, sunt
-          fugiat. Alias, consequatur!
-        </p>
+        <p>{data.body}</p>
         <div className="detail_content-tags">
-          <Tag className="tag">java</Tag>
-          <Tag className="tag">javascript</Tag>
-          <Tag className="tag">nodejs</Tag>
+          {data.tags.map((el, idx) => (
+            <Tag className="tag" key={idx}>
+              {el}
+            </Tag>
+          ))}
         </div>
         <div className="detail_content-footer">
           <div>
