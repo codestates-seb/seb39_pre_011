@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Pagenation = ({ total, page, setPage }) => {
-  const [clickPage, setClickPage] = useState(1);
+  const [clickPage, setClickPage] = useState(0);
   const totalPage = Math.ceil(total / 10);
 
   const handlePage = (idx) => {
