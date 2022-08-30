@@ -20,12 +20,9 @@ function SignUp() {
   const fetchData = useStore((state) => state.fetch);
 
   const { name, email, password, setName } = useStore((state) => state);
-  console.log(name);
+
   return (
     <Container>
-      <h1>{name}</h1>
-      <h1>{email}</h1>
-      <h1>{password}</h1>
       <LeftBox>
         <h1>Join the Stack Overflow community</h1>
         <InnerBox>
@@ -83,9 +80,7 @@ function SignUp() {
         </SNSBox>
         <SignupForm>
           <SignupContent>
-            <Input value={name} onChange={setName}>
-              Display name
-            </Input>
+            <Input>Display name</Input>
             <Input>Email</Input>
             <Input>Password</Input>
           </SignupContent>
@@ -102,7 +97,6 @@ function SignUp() {
           <ButtonPrimary width="268px" height="37px" onClick={fetchData}>
             Sign up
           </ButtonPrimary>
-          console.log(fetchData)
           <BottomDescription>
             By clicking “Sign up”, you agree to our
             <span> terms of service, privacy policy</span> and
@@ -132,6 +126,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 2rem;
 `;
 
 const LeftBox = styled.div`
