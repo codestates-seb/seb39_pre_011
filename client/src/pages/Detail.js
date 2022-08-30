@@ -10,7 +10,8 @@ import axios from "axios";
 
 function Detail() {
   const { question_id } = useParams();
-  let [data, setData] = useState([]);
+  const [data, setData] = useState([]);
+  const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
     axios({
@@ -19,6 +20,10 @@ function Detail() {
     }).then((response) => {
       setData(response.data);
     });
+
+    fetch(`http://localhost:3001/answer?question_id=${question_id}`)
+      .then((res) => res.json())
+      .then((res) => setAnswers(res));
   }, []);
 
   return (
@@ -27,8 +32,10 @@ function Detail() {
       <div className="detail_main">
         <div className="detail_main-content">
           <DetailPage data={data} setData={setData} />
-          <div className="answer_count">2 Answer</div>
-          <Answer />
+          <div className="answer_count">{answers.length} Answer</div>
+          {answers.map((el) => (
+            <Answer answer={el} key={el.id} />
+          ))}
           <InputAnswer />
         </div>
         <DetailAside />

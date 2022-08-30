@@ -12,7 +12,7 @@ function Posts() {
   const [page, setPage] = useState(1);
   const offset = (page - 1) * 10;
 
-  const { posts, setPosts } = useStore();
+  const { posts, setPosts, users, setUsers } = useStore();
   console.log(posts);
 
   useEffect(() => {
@@ -20,6 +20,11 @@ function Posts() {
       method: "get",
       url: "http://localhost:3001/question",
     }).then((response) => setPosts(response.data));
+
+    axios({
+      method: "get",
+      url: "http://localhost:3001/user",
+    }).then((response) => setUsers(response.data));
   }, []);
 
   return (

@@ -11,6 +11,11 @@ const useStore = create((set) => ({
   setSinglePost: (input) => {
     set((state) => ({ singlePost: input }));
   },
+
+  users: [],
+  setUsers: (input) => {
+    set((state) => ({ users: input }));
+  },
 }));
 
 export default useStore;

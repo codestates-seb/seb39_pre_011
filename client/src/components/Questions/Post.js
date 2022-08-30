@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Tag } from "../ui/Tag";
 
 function Post({ post }) {
+  const [user, setUser] = useState({});
+  const [answer, setAnswer] = useState([]);
+  const [postAnswer, setPostAnswer] = useState([]);
+
   const handleView = () => {
     let clickView = post.view;
     clickView++;
@@ -16,6 +20,21 @@ function Post({ post }) {
       body: JSON.stringify(postView),
     });
   };
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/user/${post.user_id}`)
+      .then((res) => res.json())
+      .then((res) => setUser(res));
+
+    fetch(`http://localhost:3001/answer?user_id=${post.user_id}`)
+      .then((res) => res.json())
+      .then((res) => setAnswer(res));
+
+    fetch(`http://localhost:3001/answer?question_id=${post.id}`)
+      .then((res) => res.json())
+      .then((res) => setPostAnswer(res));
+  }, []);
+
   return (
     <Li>
       <State>
@@ -24,7 +43,7 @@ function Post({ post }) {
           <span> votes</span>
         </div>
         <div className="font_color">
-          <span>0</span>
+          <span>{postAnswer.length}</span>
           <span> answers</span>
         </div>
         <div className="font_color">
@@ -49,8 +68,8 @@ function Post({ post }) {
             <a href="/">
               <img src="#" alt=" "></img>
             </a>
-            <a href="/">kimcoding</a>
-            <span className="bold">3</span>
+            <a href="/">{user.name}</a>
+            <span className="bold">{answer.length}</span>
             <span>aksed</span>
             <time>39 sec ago</time>
           </div>
