@@ -18,44 +18,51 @@ function Sidebar() {
   };
 
   return (
-    <Container>
-      <ul>
-        <li className="title">Home</li>
-      </ul>
-      <ul>
-        <li className="title">public</li>
-        {menu.map((el, idx) => {
-          return (
-            <Link to={el.path} key={idx}>
-              <li
-                className={click === idx ? "on" : null}
-                onClick={() => clickHandler(idx)}
-              >
-                {el.title === "Question" ? <Qicon /> : null} {el.title}
-              </li>
-            </Link>
-          );
-        })}
-      </ul>
-      <ul>
-        <li className="title">Collectives</li>
-        <li>
-          <Star />
-          Explore Collectives
-        </li>
-      </ul>
-      <ul>
-        <li className="title">TEAMS</li>
-        <li>
-          <Team />
-          Create Free Team
-        </li>
-      </ul>
-    </Container>
+    <NavContainer>
+      <Nav>
+        <ul>
+          <li className="title">Home</li>
+        </ul>
+        <ul>
+          <li className="title">public</li>
+          {menu.map((el, idx) => {
+            return (
+              <Link to={el.path} key={idx}>
+                <li
+                  className={click === idx ? "on" : null}
+                  onClick={() => clickHandler(idx)}
+                >
+                  {el.title === "Question" ? <Qicon /> : null} {el.title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <ul>
+          <li className="title">Collectives</li>
+          <li>
+            <Star />
+            Explore Collectives
+          </li>
+        </ul>
+        <ul>
+          <li className="title">TEAMS</li>
+          <li>
+            <Team />
+            Create Free Team
+          </li>
+        </ul>
+      </Nav>
+    </NavContainer>
   );
 }
 
-const Container = styled.div`
+const NavContainer = styled.nav`
+  position: relative;
+  border-right: 1px solid #e3e6e8;
+`;
+
+const Nav = styled.div`
   width: 160px;
   padding-top: 30px;
   font-size: 13px;

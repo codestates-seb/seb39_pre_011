@@ -4,6 +4,18 @@ import { Link } from "react-router-dom";
 import { Tag } from "../ui/Tag";
 
 function Post({ post }) {
+  const handleView = () => {
+    let clickView = post.view;
+    clickView++;
+
+    let postView = { ...post, ...{ view: clickView } };
+
+    fetch(`http://localhost:3001/question/${post.id}`, {
+      method: "PUT",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(postView),
+    });
+  };
   return (
     <Li>
       <State>
@@ -22,7 +34,9 @@ function Post({ post }) {
       </State>
       <Content>
         <h3>
-          <Link to={`/detail/${post.question_id}`}>{post.title}</Link>
+          <Link to={`/detail/${post.id}`} onClick={handleView}>
+            {post.title}
+          </Link>
         </h3>
         <p>{post.body}</p>
         <div className="content-info">

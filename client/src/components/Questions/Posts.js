@@ -5,21 +5,21 @@ import { ButtonPrimary } from "../ui/Button";
 import { ReactComponent as Filter } from "./../../assets/filter.svg";
 import Post from "./Post";
 import Pagenation from "../ui/Pagenation";
-
-const axios = require("axios");
+import useStore from "../../store/store";
+import axios from "axios";
 
 function Posts() {
-  const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * 10;
+
+  const { posts, setPosts } = useStore();
+  console.log(posts);
 
   useEffect(() => {
     axios({
       method: "get",
       url: "http://localhost:3001/question",
-    }).then((response) => {
-      setPosts(response.data);
-    });
+    }).then((response) => setPosts(response.data));
   }, []);
 
   return (
@@ -60,7 +60,7 @@ function Posts() {
 
       <ul>
         {posts.slice(offset, offset + 10).map((post) => {
-          return <Post post={post} key={post.question_id} />;
+          return <Post post={post} key={post.id} />;
         })}
       </ul>
 

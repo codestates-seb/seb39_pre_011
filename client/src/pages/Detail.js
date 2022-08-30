@@ -2,44 +2,31 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import Detailtitle from "../components/Detail/Detailtitle";
-import DetailQuestion from "../components/Detail/DetailQuestion";
+import DetailPage from "../components/Detail/DetailPage";
 import DetailAside from "../components/Detail/DetailAside";
 import Answer from "../components/Detail/Answer";
 import InputAnswer from "../components/Detail/InputAnswer";
-
-const axios = require("axios");
+import axios from "axios";
 
 function Detail() {
   const { question_id } = useParams();
+  let [data, setData] = useState([]);
 
-  const dummy = {
-    question_id: null,
-    user_id: "",
-    title: "",
-    body: "",
-    tags: [],
-    created_at: "",
-    updated_at: "",
-    vote: null,
-    view: null,
-  };
-  const [data, setData] = useState(dummy);
   useEffect(() => {
     axios({
       method: "get",
-      url: "http://localhost:3001/question",
-      params: { question_id: question_id },
+      url: `http://localhost:3001/question/${question_id}`,
     }).then((response) => {
-      setData(response.data[0]);
+      setData(response.data);
     });
-  }, [question_id]);
+  }, []);
 
   return (
     <Container>
       <Detailtitle data={data} />
       <div className="detail_main">
         <div className="detail_main-content">
-          <DetailQuestion data={data} setData={setData} />
+          <DetailPage data={data} setData={setData} />
           <div className="answer_count">2 Answer</div>
           <Answer />
           <InputAnswer />
