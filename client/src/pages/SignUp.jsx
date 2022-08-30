@@ -14,10 +14,18 @@ import { ReactComponent as GithubImg } from "../assets/github.svg";
 import { ReactComponent as FacebookImg } from "../assets/facebook.svg";
 import { ReactComponent as TalentImg } from "../assets/signupTalent.svg";
 import { ReactComponent as QuestionImg } from "../assets/questionmark.svg";
+import useStore from "../store";
 
 function SignUp() {
+  const fetchData = useStore((state) => state.fetch);
+
+  const { name, email, password, setName } = useStore((state) => state);
+  console.log(name);
   return (
     <Container>
+      <h1>{name}</h1>
+      <h1>{email}</h1>
+      <h1>{password}</h1>
       <LeftBox>
         <h1>Join the Stack Overflow community</h1>
         <InnerBox>
@@ -75,11 +83,12 @@ function SignUp() {
         </SNSBox>
         <SignupForm>
           <SignupContent>
-            <Input>Display name</Input>
+            <Input value={name} onChange={setName}>
+              Display name
+            </Input>
             <Input>Email</Input>
             <Input>Password</Input>
           </SignupContent>
-
           <Description>
             Passwords must contain at least eight characters, including at least
             1 letter and 1 number.
@@ -90,9 +99,10 @@ function SignUp() {
             invitations, company announcements, and digests.
             <QuestionImg />
           </CheckBox>
-          <ButtonPrimary width="268px" height="37px">
+          <ButtonPrimary width="268px" height="37px" onClick={fetchData}>
             Sign up
           </ButtonPrimary>
+          console.log(fetchData)
           <BottomDescription>
             By clicking “Sign up”, you agree to our
             <span> terms of service, privacy policy</span> and
