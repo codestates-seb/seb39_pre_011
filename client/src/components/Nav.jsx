@@ -11,7 +11,7 @@ import { ReactComponent as LogoutImg } from "../assets/logout.svg";
 import profile from "../assets/profile.jpg";
 
 const Nav = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <Header>
       <OragneLine />
@@ -55,6 +55,7 @@ const Nav = () => {
                   color="#39739D"
                   border="hsl(205,41%,63%)"
                   width="59.45px"
+                  hoverbackground="#B3D3EA"
                 >
                   Log in
                 </ButtonPrimary>

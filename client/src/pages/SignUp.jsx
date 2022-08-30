@@ -14,8 +14,13 @@ import { ReactComponent as GithubImg } from "../assets/github.svg";
 import { ReactComponent as FacebookImg } from "../assets/facebook.svg";
 import { ReactComponent as TalentImg } from "../assets/signupTalent.svg";
 import { ReactComponent as QuestionImg } from "../assets/questionmark.svg";
+import useStore from "../store";
 
 function SignUp() {
+  const fetchData = useStore((state) => state.fetch);
+
+  const { name, email, password, setName } = useStore((state) => state);
+
   return (
     <Container>
       <LeftBox>
@@ -74,9 +79,11 @@ function SignUp() {
           </ButtonSNS>
         </SNSBox>
         <SignupForm>
-          <Input>Display name</Input>
-          <Input>Email</Input>
-          <Input>Password</Input>
+          <SignupContent>
+            <Input>Display name</Input>
+            <Input>Email</Input>
+            <Input>Password</Input>
+          </SignupContent>
           <Description>
             Passwords must contain at least eight characters, including at least
             1 letter and 1 number.
@@ -87,7 +94,7 @@ function SignUp() {
             invitations, company announcements, and digests.
             <QuestionImg />
           </CheckBox>
-          <ButtonPrimary width="268px" height="37px">
+          <ButtonPrimary width="268px" height="37px" onClick={fetchData}>
             Sign up
           </ButtonPrimary>
           <BottomDescription>
@@ -119,6 +126,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 2rem;
 `;
 
 const LeftBox = styled.div`
@@ -221,4 +229,8 @@ const CheckBox = styled.div`
   input {
     margin-right: 5px;
   }
+`;
+
+const SignupContent = styled.div`
+  width: 100%;
 `;
