@@ -3,7 +3,8 @@ seb39_pre_11
 # 💻 StackOverFlow site clone pre-project
 
 > Main project 전 클론 프로젝트를 통해 배운 내용을 학습해보는 pre-project <br/>
-> 📆 2022.08.19(Fri) ~ 2022.09.06(Tues)
+
+> 📆 2022.08.19(Fri) ~~ 2022.09.06(Tues)
 
 <br/>
 
