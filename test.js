@@ -43,3 +43,18 @@ axios({
 // });
 // console.log("like!");
 // }
+
+async function 더하기() {
+  let 프로미스 = new Promise((resolve, reject) => {
+    let 연산 = 1 + 1;
+    resolve(연산);
+  });
+
+  let 결과 = await 프로미스;
+
+  console.log(결과);
+
+  console.log(12345);
+
+  return "hi";
+}

@@ -11,7 +11,7 @@ const axios = require("axios");
 
 function Detail() {
   const { question_id } = useParams();
-  // 리덕스 쓰기전에 잠깐 테스트로 axios로 받아옴
+
   const dummy = {
     question_id: null,
     user_id: "",
@@ -24,41 +24,22 @@ function Detail() {
     view: null,
   };
   const [data, setData] = useState(dummy);
-
   useEffect(() => {
     axios({
       method: "get",
-      url: `http://localhost:3001/question?question_id=${question_id}`,
-    })
-      .then((response) => {
-        setData(response.data[0]);
-        console.log("첫번째");
-        console.log(data);
-        return axios({
-          method: "get",
-          url: `http://localhost:3001/user`,
-        });
-      })
-      .then((response) => {
-        console.log("두번째");
-        console.log(response.data);
-        console.log(response.data[0]);
-        console.log(response.data[0].user_id);
-        console.log(data);
-        // let filtered = response.data.filter(
-        //   (el) => el.user_id === data.user_id
-        // );
-
-        // console.log(filtered);
-      });
-  }, []);
+      url: "http://localhost:3001/question",
+      params: { question_id: question_id },
+    }).then((response) => {
+      setData(response.data[0]);
+    });
+  }, [question_id]);
 
   return (
     <Container>
       <Detailtitle data={data} />
       <div className="detail_main">
         <div className="detail_main-content">
-          <DetailQuestion data={data} />
+          <DetailQuestion data={data} setData={setData} />
           <div className="answer_count">2 Answer</div>
           <Answer />
           <InputAnswer />

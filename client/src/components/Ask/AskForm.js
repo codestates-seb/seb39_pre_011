@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { TagsInput } from "./TagsInput";
 import { TextArea, TextInput } from "./../ui/textInput";
+import { useNavigate } from "react-router-dom";
+
+const axios = require("axios");
 
 function AskForm() {
   const initialTags = [];
@@ -9,14 +12,14 @@ function AskForm() {
   const [body, setBody] = useState("");
   const [tags, setTags] = useState(initialTags);
 
+  const navigate = useNavigate();
+
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
-    console.log(title);
   };
 
   const handleBodyChange = (e) => {
     setBody(e.target.value);
-    console.log(body);
   };
 
   const handleSubmit = () => {
@@ -30,7 +33,16 @@ function AskForm() {
       answer: [],
       createAt: date.toLocaleString("ko-kr"),
     };
-    console.log(askData);
+
+    fetch("http://localhost:3001/question", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(askData),
+    }).then((res) => {
+      if (res.status === 201) {
+        navigate("/");
+      }
+    });
   };
 
   return (

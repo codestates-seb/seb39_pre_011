@@ -7,13 +7,19 @@ import { ReactComponent as ArrowBottom } from "./../../assets/arrowbottom.svg";
 import { ReactComponent as BookMark } from "./../../assets/bookmark.svg";
 import { ReactComponent as Time } from "./../../assets/time.svg";
 
-function DetailQuestion({ data }) {
+function DetailQuestion({ data, setData }) {
+  const handleUp = () => {
+    // let count = data.vote;
+    // count++;
+    // setData(count);
+  };
+  const handleDown = () => {};
   return (
     <Container>
       <div className="detail_aside">
-        <ArrowTop />
+        <ArrowTop onClick={handleUp} />
         <span>{data.vote}</span>
-        <ArrowBottom />
+        <ArrowBottom onClick={handleDown} />
         <BookMark />
         <Time />
       </div>
