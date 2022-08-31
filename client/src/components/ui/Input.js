@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input = ({ children, value, onChange, sub }) => {
+const Input = ({ children, value, name, onChange, sub }) => {
   return (
     <Container>
       <Box>
@@ -9,7 +9,7 @@ const Input = ({ children, value, onChange, sub }) => {
         <span>{sub}</span>
       </Box>
 
-      <input defaultValue={value} onChange={onChange} />
+      <input name={name} defaultValue={value} onChange={onChange} />
     </Container>
   );
 };

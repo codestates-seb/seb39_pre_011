@@ -9,9 +9,13 @@ import { ReactComponent as AchievementsImg } from "../assets/achievements.svg";
 import { ReactComponent as HelpImg } from "../assets/help.svg";
 import { ReactComponent as LogoutImg } from "../assets/logout.svg";
 import profile from "../assets/profile.jpg";
+import useStore from "../store";
 
 const Nav = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(true);
+  const isLogin = useStore((state) => state.isLogin);
+  const setIsLogin = useStore((state) => state.isLogin);
+
   return (
     <Header>
       <OragneLine />
@@ -144,6 +148,13 @@ const NavStyle = styled(NavLink)`
   font-size: 14px;
   margin: 0 10px;
   color: #525960;
+
+  /* &:hover {
+    background-color: #e3e6e8;
+    border-radius: 50px;
+    width: 78px;
+    height: 29px;
+  } */
 `;
 
 const Box = styled.div`

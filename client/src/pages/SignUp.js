@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ButtonPrimary, ButtonSNS } from "../components/ui/Button";
 import { NavLink } from "react-router-dom";
 import Input from "../components/ui/Input";
+import axios from "axios";
 
 import { ReactComponent as Icon1 } from "../assets/signup/icon1.svg";
 import { ReactComponent as Icon2 } from "../assets/signup/icon2.svg";
@@ -15,12 +16,9 @@ import { ReactComponent as FacebookImg } from "../assets/facebook.svg";
 import { ReactComponent as TalentImg } from "../assets/signupTalent.svg";
 import { ReactComponent as QuestionImg } from "../assets/questionmark.svg";
 import useStore from "../store";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const fetchData = useStore((state) => state.fetch);
-
-  const { name, email, password, setName } = useStore((state) => state);
-
   return (
     <Container>
       <LeftBox>
@@ -80,9 +78,9 @@ function SignUp() {
         </SNSBox>
         <SignupForm>
           <SignupContent>
-            <Input>Display name</Input>
-            <Input>Email</Input>
-            <Input>Password</Input>
+            <Input name="name">Display name</Input>
+            <Input name="email">Email</Input>
+            <Input name="password">Password</Input>
           </SignupContent>
           <Description>
             Passwords must contain at least eight characters, including at least
@@ -94,7 +92,7 @@ function SignUp() {
             invitations, company announcements, and digests.
             <QuestionImg />
           </CheckBox>
-          <ButtonPrimary width="268px" height="37px" onClick={fetchData}>
+          <ButtonPrimary width="268px" height="37px" type="button">
             Sign up
           </ButtonPrimary>
           <BottomDescription>

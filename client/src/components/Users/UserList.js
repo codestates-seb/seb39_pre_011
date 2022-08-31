@@ -6,7 +6,6 @@ const axios = require("axios");
 
 function UserList() {
   const [users, setUsers] = useState([]);
-  // const users = [];
 
   useEffect(() => {
     axios({
