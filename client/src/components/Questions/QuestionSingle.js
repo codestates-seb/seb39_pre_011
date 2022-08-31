@@ -5,6 +5,7 @@ import { Tag } from "../ui/Tag";
 import { updatePostData } from "../../api/postApi";
 import { readUserData } from "../../api/userApi";
 import { readParamsPostData } from "../../api/postApi";
+import { readParamsAnswerData } from "../../api/answerApi";
 
 function QuestionSingle({ post }) {
   const [user, setUser] = useState({});
@@ -23,10 +24,9 @@ function QuestionSingle({ post }) {
     readParamsPostData({ user_id: post.user_id }).then((response) =>
       setAsk(response.data)
     );
-
-    fetch(`http://localhost:3001/answer?question_id=${post.id}`)
-      .then((res) => res.json())
-      .then((res) => setPostAnswer(res));
+    readParamsAnswerData({ question_id: post.id }).then((response) =>
+      setPostAnswer(response.data)
+    );
   }, []);
 
   return (

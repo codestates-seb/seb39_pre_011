@@ -36,9 +36,7 @@ function DetailPage() {
         <Time />
       </Side>
       <Content>
-        <p>
-          <pre>{singlePost.body}</pre>
-        </p>
+        <p>{singlePost.body}</p>
         <div className="content_tags">
           {singlePost.tags
             ? singlePost.tags.map((el, idx) => (
@@ -97,9 +95,9 @@ const Content = styled.div`
     color: #232629;
     line-height: 22.5px;
 
-    > pre {
+    /* > pre {
       white-space: pre-wrap;
-    }
+    } */
   }
 
   > .content_tags {
