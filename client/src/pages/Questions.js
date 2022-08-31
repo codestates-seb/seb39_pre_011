@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Posts from "../components/Questions/Posts";
+import QuestionList from "../components/Questions/QuestionList";
 import QuestionAside from "../components/Questions/QuestionAside";
 
 function Questions() {
   return (
     <Container>
-      <Posts />
+      <QuestionList />
       <QuestionAside />
     </Container>
   );
