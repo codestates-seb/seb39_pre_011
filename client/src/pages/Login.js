@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import LogoSrc from "../assets/sprites.svg";
 import { ButtonPrimary, ButtonSNS } from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import { NavLink } from "react-router-dom";
-import useStore from "../store";
-import axios from "axios";
 
 import { ReactComponent as GoogleImg } from "../assets/google.svg";
 import { ReactComponent as GithubImg } from "../assets/github.svg";
