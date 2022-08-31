@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import Detailtitle from "../components/Detail/Detailtitle";
@@ -6,32 +6,31 @@ import DetailPage from "../components/Detail/DetailPage";
 import DetailAside from "../components/Detail/DetailAside";
 import Answer from "../components/Detail/Answer";
 import InputAnswer from "../components/Detail/InputAnswer";
-import axios from "axios";
+import { readPostData } from "../api/postApi";
+import { readParamsAnswerData } from "../api/answerApi";
+import usePostStore from "../store/postStore";
+import useAnswerStore from "../store/answerStore";
 
 function Detail() {
   const { question_id } = useParams();
-  const [data, setData] = useState([]);
-  const [answers, setAnswers] = useState([]);
+
+  const { setSinglePost } = usePostStore();
+  const { questionAnswer: answers, setQuestionAnswer } = useAnswerStore();
 
   useEffect(() => {
-    axios({
-      method: "get",
-      url: `http://localhost:3001/question/${question_id}`,
-    }).then((response) => {
-      setData(response.data);
-    });
+    readPostData(question_id).then((response) => setSinglePost(response.data));
 
-    fetch(`http://localhost:3001/answer?question_id=${question_id}`)
-      .then((res) => res.json())
-      .then((res) => setAnswers(res));
+    readParamsAnswerData({ question_id: question_id }).then((response) =>
+      setQuestionAnswer(response.data)
+    );
   }, []);
 
   return (
     <Container>
-      <Detailtitle data={data} />
+      <Detailtitle />
       <div className="detail_main">
         <div className="detail_main-content">
-          <DetailPage data={data} setData={setData} />
+          <DetailPage />
           <div className="answer_count">{answers.length} Answer</div>
           {answers.map((el) => (
             <Answer answer={el} key={el.id} />

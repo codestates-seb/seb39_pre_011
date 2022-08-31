@@ -6,57 +6,40 @@ import { ReactComponent as ArrowTop } from "./../../assets/arrowtop.svg";
 import { ReactComponent as ArrowBottom } from "./../../assets/arrowbottom.svg";
 import { ReactComponent as BookMark } from "./../../assets/bookmark.svg";
 import { ReactComponent as Time } from "./../../assets/time.svg";
+import { updatePostData } from "../../api/postApi";
+import usePostStore from "../../store/postStore";
 
-function DetailPage({ data, setData }) {
+function DetailPage() {
+  const { singlePost, setSinglePost } = usePostStore();
+
   const handleUp = () => {
-    let count = data.vote;
+    let count = singlePost.vote;
     count++;
-    let add = { ...data, ...{ vote: count } };
-
-    // axios({
-    //   method: "put",
-    //   url: `http://localhost:3001/question/${data.id}`,
-    //   // params: { question_id: data.question_id },
-    //   headers: { "Content-type": "application/json" },
-    //   body: JSON.stringify(putData),
-    // }).then((response) => setData(putData));
-    fetch(`http://localhost:3001/question/${data.id}`, {
-      method: "PUT",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(add),
-    }).then((response) => {
-      setData(add);
-    });
+    let modified = { ...singlePost, ...{ vote: count } };
+    updatePostData(singlePost.id, modified).then(() => setSinglePost(modified));
   };
   const handleDown = () => {
-    let count = data.vote;
-    if (count >= 0) {
+    let count = singlePost.vote;
+    if (count > 0) {
       count--;
     }
-    let add = { ...data, ...{ vote: count } };
-
-    fetch(`http://localhost:3001/question/${data.id}`, {
-      method: "PUT",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(add),
-    }).then((response) => {
-      setData(add);
-    });
+    let modified = { ...singlePost, ...{ vote: count } };
+    updatePostData(singlePost.id, modified).then(() => setSinglePost(modified));
   };
   return (
     <Container>
       <Side>
         <ArrowTop onClick={handleUp} />
-        <span>{data.vote}</span>
+        <span>{singlePost.vote}</span>
         <ArrowBottom onClick={handleDown} />
         <BookMark />
         <Time />
       </Side>
       <Content>
-        <p>{data.body}</p>
+        <p>{singlePost.body}</p>
         <div className="content_tags">
-          {data.tags
-            ? data.tags.map((el, idx) => (
+          {singlePost.tags
+            ? singlePost.tags.map((el, idx) => (
                 <Tag className="tag" key={idx}>
                   {el}
                 </Tag>

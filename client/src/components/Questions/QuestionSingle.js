@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Tag } from "../ui/Tag";
+import { updatePostData } from "../../api/postApi";
 
-function Post({ post }) {
+function QuestionSingle({ post }) {
   const [user, setUser] = useState({});
   const [answer, setAnswer] = useState([]);
   const [postAnswer, setPostAnswer] = useState([]);
@@ -11,14 +12,8 @@ function Post({ post }) {
   const handleView = () => {
     let clickView = post.view;
     clickView++;
-
     let postView = { ...post, ...{ view: clickView } };
-
-    fetch(`http://localhost:3001/question/${post.id}`, {
-      method: "PUT",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(postView),
-    });
+    updatePostData(post.id, postView);
   };
 
   useEffect(() => {
@@ -64,15 +59,15 @@ function Post({ post }) {
               <Tag key={idx}>{el}</Tag>
             ))}
           </div>
-          <div className="content-info-user">
+          <UserInfo>
             <a href="/">
               <img src="#" alt=" "></img>
             </a>
             <a href="/">{user.name}</a>
             <span className="bold">{answer.length}</span>
-            <span>aksed</span>
+            <span>asked</span>
             <time>39 sec ago</time>
-          </div>
+          </UserInfo>
         </div>
       </Content>
     </Li>
@@ -130,27 +125,27 @@ const Content = styled.div`
     display: flex;
     gap: 4px;
   }
+`;
 
-  .content-info-user {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
+const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
 
-    a {
-      color: #0a95ff;
-    }
+  a {
+    color: #0a95ff;
+  }
 
-    > span,
-    time {
-      color: rgb(106, 115, 124);
-    }
+  > span,
+  time {
+    color: rgb(106, 115, 124);
+  }
 
-    .bold {
-      color: rgb(82, 89, 96);
-      font-weight: 700;
-    }
+  .bold {
+    color: rgb(82, 89, 96);
+    font-weight: 700;
   }
 `;
 
-export default Post;
+export default QuestionSingle;

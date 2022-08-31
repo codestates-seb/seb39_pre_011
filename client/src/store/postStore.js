@@ -1,7 +1,6 @@
 import create from "zustand";
-// const axios = require("axios");
 
-const useStore = create((set) => ({
+const usePostStore = create((set) => ({
   posts: [],
   setPosts: (input) => {
     set((state) => ({ posts: input }));
@@ -18,4 +17,4 @@ const useStore = create((set) => ({
   },
 }));
 
-export default useStore;
+export default usePostStore;
