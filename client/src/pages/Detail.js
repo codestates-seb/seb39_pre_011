@@ -1,47 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import Detailtitle from "../components/Detail/Detailtitle";
-import DetailQuestion from "../components/Detail/DetailQuestion";
+import DetailPage from "../components/Detail/DetailPage";
 import DetailAside from "../components/Detail/DetailAside";
 import Answer from "../components/Detail/Answer";
 import InputAnswer from "../components/Detail/InputAnswer";
-
-const axios = require("axios");
+import { readPostData } from "../api/postApi";
+import { readParamsAnswerData } from "../api/answerApi";
+import usePostStore from "../store/postStore";
+import useAnswerStore from "../store/answerStore";
 
 function Detail() {
   const { question_id } = useParams();
 
-  const dummy = {
-    question_id: null,
-    user_id: "",
-    title: "",
-    body: "",
-    tags: [],
-    created_at: "",
-    updated_at: "",
-    vote: null,
-    view: null,
-  };
-  const [data, setData] = useState(dummy);
+  const { setSinglePost } = usePostStore();
+  const { questionAnswer: answers, setQuestionAnswer } = useAnswerStore();
+
   useEffect(() => {
-    axios({
-      method: "get",
-      url: "http://localhost:3001/question",
-      params: { question_id: question_id },
-    }).then((response) => {
-      setData(response.data[0]);
-    });
-  }, [question_id]);
+    readPostData(question_id).then((response) => setSinglePost(response.data));
+
+    readParamsAnswerData({ question_id: question_id }).then((response) =>
+      setQuestionAnswer(response.data)
+    );
+  }, []);
 
   return (
     <Container>
-      <Detailtitle data={data} />
+      <Detailtitle />
       <div className="detail_main">
         <div className="detail_main-content">
-          <DetailQuestion data={data} setData={setData} />
-          <div className="answer_count">2 Answer</div>
-          <Answer />
+          <DetailPage />
+          <div className="answer_count">{answers.length} Answer</div>
+          {answers.map((el) => (
+            <Answer answer={el} key={el.id} />
+          ))}
           <InputAnswer />
         </div>
         <DetailAside />

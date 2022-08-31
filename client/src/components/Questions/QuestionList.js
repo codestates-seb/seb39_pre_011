@@ -3,23 +3,28 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ButtonPrimary } from "../ui/Button";
 import { ReactComponent as Filter } from "./../../assets/filter.svg";
-import Post from "./Post";
+import QuestionSingle from "./QuestionSingle";
 import Pagenation from "../ui/Pagenation";
+import usePostStore from "../../store/postStore";
+import axios from "axios";
 
-const axios = require("axios");
-
-function Posts() {
-  const [posts, setPosts] = useState([]);
+function QuestionList() {
   const [page, setPage] = useState(1);
   const offset = (page - 1) * 10;
+
+  const { posts, setPosts, users, setUsers } = usePostStore();
+  console.log(posts);
 
   useEffect(() => {
     axios({
       method: "get",
       url: "http://localhost:3001/question",
-    }).then((response) => {
-      setPosts(response.data);
-    });
+    }).then((response) => setPosts(response.data));
+
+    // axios({
+    //   method: "get",
+    //   url: "http://localhost:3001/user",
+    // }).then((response) => setUsers(response.data));
   }, []);
 
   return (
@@ -60,7 +65,7 @@ function Posts() {
 
       <ul>
         {posts.slice(offset, offset + 10).map((post) => {
-          return <Post post={post} key={post.question_id} />;
+          return <QuestionSingle post={post} key={post.id} />;
         })}
       </ul>
 
@@ -125,4 +130,4 @@ const Container = styled.section`
   }
 `;
 
-export default Posts;
+export default QuestionList;

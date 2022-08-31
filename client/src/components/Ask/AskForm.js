@@ -4,8 +4,6 @@ import { TagsInput } from "./TagsInput";
 import { TextArea, TextInput } from "./../ui/textInput";
 import { useNavigate } from "react-router-dom";
 
-const axios = require("axios");
-
 function AskForm() {
   const initialTags = [];
   const [title, setTitle] = useState("");
