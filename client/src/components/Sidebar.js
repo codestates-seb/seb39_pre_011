@@ -30,7 +30,10 @@ function Sidebar() {
               <Link to={el.path} key={idx}>
                 <li
                   className={click === idx ? "on" : null}
-                  onClick={() => clickHandler(idx)}
+                  onClick={() => {
+                    clickHandler(idx);
+                    window.scrollTo(0, 0);
+                  }}
                 >
                   {el.title === "Question" ? <Qicon /> : null} {el.title}
                 </li>

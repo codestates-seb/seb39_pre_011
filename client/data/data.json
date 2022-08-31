@@ -85,8 +85,8 @@
       ],
       "created_at": "2019-11-14T09:14:23 -09:00",
       "updated_at": "",
-      "vote": 72,
-      "view": 391
+      "vote": 57,
+      "view": 399
     },
     {
       "id": "630d72d5f68a1e1fbdcc3685",
@@ -101,7 +101,7 @@
       "created_at": "2016-03-14T05:39:03 -09:00",
       "updated_at": "",
       "vote": 35,
-      "view": 220
+      "view": 221
     },
     {
       "id": "630d72d504999ffdda76b5bc",
@@ -163,7 +163,7 @@
       "created_at": "2019-12-16T01:52:47 -09:00",
       "updated_at": "",
       "vote": 5,
-      "view": 188
+      "view": 189
     },
     {
       "id": "630d72d5103b63e235a266a1",
@@ -177,7 +177,7 @@
       "created_at": "2017-06-10T05:45:28 -09:00",
       "updated_at": "",
       "vote": 13,
-      "view": 103
+      "view": 105
     },
     {
       "id": "630d72d553a64e152815ea7d",
@@ -395,7 +395,7 @@
     },
     {
       "id": "630d72d5bf171e23d372d524",
-      "user_id": "630d6d30838ce89b9c3599e5",
+      "user_id": "630d6d30566b74ce969cd021",
       "title": "minim anim tempor fugiat commodo Lorem nulla esse anim do",
       "body": "Id dolore mollit tempor voluptate ipsum eu do excepteur excepteur non eiusmod sunt. Mollit veniam commodo magna consequat culpa in ad. Deserunt nisi deserunt in ipsum dolor voluptate dolore irure ad nulla nostrud dolore.\r\n",
       "tags": [
@@ -423,7 +423,7 @@
       "created_at": "2019-04-22T11:12:46 -09:00",
       "updated_at": "",
       "vote": 21,
-      "view": 117
+      "view": 118
     }
   ],
   "answer": [

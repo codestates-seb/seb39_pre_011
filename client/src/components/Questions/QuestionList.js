@@ -12,7 +12,7 @@ function QuestionList() {
   const [page, setPage] = useState(1);
   const offset = (page - 1) * 10;
 
-  const { posts, setPosts, users, setUsers } = usePostStore();
+  const { posts, setPosts } = usePostStore();
   console.log(posts);
 
   useEffect(() => {
@@ -20,11 +20,6 @@ function QuestionList() {
       method: "get",
       url: "http://localhost:3001/question",
     }).then((response) => setPosts(response.data));
-
-    // axios({
-    //   method: "get",
-    //   url: "http://localhost:3001/user",
-    // }).then((response) => setUsers(response.data));
   }, []);
 
   return (

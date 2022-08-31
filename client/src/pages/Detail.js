@@ -57,6 +57,7 @@ const Container = styled.section`
     gap: 24px;
   }
   .detail_main-content {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 24px;
