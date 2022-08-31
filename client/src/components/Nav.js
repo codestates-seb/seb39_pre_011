@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Search from "./ui/Search";
 import LogoSrc from "../assets/sprites.svg";
@@ -9,12 +9,10 @@ import { ReactComponent as AchievementsImg } from "../assets/achievements.svg";
 import { ReactComponent as HelpImg } from "../assets/help.svg";
 import { ReactComponent as LogoutImg } from "../assets/logout.svg";
 import profile from "../assets/profile.jpg";
-import useStore from "../store";
+import useStore from "../store/loginStore";
 
 const Nav = () => {
-  // const [isLogin, setIsLogin] = useState(true);
   const isLogin = useStore((state) => state.isLogin);
-  const setIsLogin = useStore((state) => state.isLogin);
 
   return (
     <Header>
