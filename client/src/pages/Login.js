@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import LogoSrc from "../assets/sprites.svg";
 import { ButtonPrimary, ButtonSNS } from "../components/ui/Button";
@@ -33,6 +33,13 @@ function Login() {
   } = useStore((state) => state);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Token 추가
+    localStorage.setItem("token", data);
+    // Token 읽어오기
+    console.log(localStorage.getItem("token"));
+  }, [data]);
 
   // 이메일 입력 변경 이벤트 핸들러
   const onEmailChange = (e) => {
