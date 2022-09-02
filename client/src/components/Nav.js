@@ -30,14 +30,25 @@ const Nav = () => {
               <Search />
             </div>
             <div className="right">
-              <ProfileBox>
-                <img src={profile} alt="profile" />
-                <span>1</span>
-              </ProfileBox>
-              <InboxImg />
-              <AchievementsImg />
-              <HelpImg />
-              <LogoutImg />
+              <NavLink to="/mypage" style={{ display: "flex" }}>
+                <ProfileBox>
+                  <img src="https://source.unsplash.com/random" alt="profile" />
+                  {/* <img src={profile} alt="profile" /> */}
+                  <span>1</span>
+                </ProfileBox>
+              </NavLink>
+              <ImgBox>
+                <InboxImg />
+              </ImgBox>
+              <ImgBox>
+                <AchievementsImg />
+              </ImgBox>
+              <ImgBox>
+                <HelpImg />
+              </ImgBox>
+              <ImgBox>
+                <LogoutImg />
+              </ImgBox>
             </div>
           </BoxLogin>
         ) : (
@@ -110,6 +121,7 @@ const ProfileBox = styled.div`
   align-items: center;
   gap: 4px;
   margin-left: 0.5rem;
+  padding: 0 10px;
 
   img {
     width: 24px;
@@ -122,6 +134,10 @@ const ProfileBox = styled.div`
   span {
     font-size: 12px;
     font-weight: 700;
+  }
+
+  &:hover {
+    background-color: #e3e6e8;
   }
 `;
 
@@ -143,16 +159,17 @@ const NavStyle = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
-  margin: 0 10px;
+  margin: 2px;
   color: #525960;
+  padding: 6px 12px;
+  cursor: pointer;
 
-  /* &:hover {
+  &:hover {
     background-color: #e3e6e8;
-    border-radius: 50px;
-    width: 78px;
-    height: 29px;
-  } */
+    border-radius: 1000px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 `;
 
 const Box = styled.div`
@@ -161,6 +178,7 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  font-size: 13px;
 
   .left {
     display: flex;
@@ -188,6 +206,7 @@ const BoxLogin = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
 
   .left {
     display: flex;
@@ -205,5 +224,21 @@ const BoxLogin = styled.div`
     display: flex;
     justify-content: space-between;
     flex: 1.9;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const ImgBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+
+  &:hover {
+    background-color: #e3e6e8;
   }
 `;
