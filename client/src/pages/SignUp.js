@@ -1,8 +1,11 @@
+/* eslint-disable no-useless-escape */
 import React from "react";
 import styled from "styled-components";
 import { ButtonPrimary, ButtonSNS } from "../components/ui/Button";
 import { NavLink } from "react-router-dom";
 import Input from "../components/ui/Input";
+import useStore from "../store/loginStore";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as Icon1 } from "../assets/signup/icon1.svg";
 import { ReactComponent as Icon2 } from "../assets/signup/icon2.svg";
@@ -14,12 +17,109 @@ import { ReactComponent as GithubImg } from "../assets/github.svg";
 import { ReactComponent as FacebookImg } from "../assets/facebook.svg";
 import { ReactComponent as TalentImg } from "../assets/signupTalent.svg";
 import { ReactComponent as QuestionImg } from "../assets/questionmark.svg";
-import useStore from "../store";
 
 function SignUp() {
+  const {
+    name,
+    email,
+    password,
+    setName,
+    setEmail,
+    setPassword,
+    loading,
+    hasErrors,
+    isLogin,
+    setIsLogin,
+    isName,
+    isEmail,
+    isPassword,
+    setIsName,
+    setIsEmail,
+    setIsPassword,
+    nameMessage,
+    emailMessage,
+    passwordMessage,
+    setNameMessage,
+    setEmailMessage,
+    setPasswordMessage,
+  } = useStore((state) => state);
+
+  const navigate = useNavigate();
+
+  // zustand 내의 axios post 요청
   const fetchData = useStore((state) => state.fetch);
 
-  const { name, email, password, setName } = useStore((state) => state);
+  const onNameChange = (e) => {
+    setName(e.target.value);
+
+    if (e.target.value.length < 2 || e.target.value.length > 5) {
+      setNameMessage("2~5글자로 작성해주세요.");
+      setIsName(false);
+    } else {
+      setNameMessage(null);
+      setIsName(true);
+    }
+  };
+
+  const onEmailChange = (e) => {
+    const emailRegex =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    setEmail(e.target.value);
+
+    if (!emailRegex.test(e.target.value)) {
+      setEmailMessage("이메일 형식이 틀렸습니다. 다시 작성해주세요.");
+      setIsEmail(false);
+    } else {
+      setEmailMessage(null);
+      setIsEmail(true);
+    }
+  };
+
+  const onPasswordChange = (e) => {
+    const pwRegex = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
+    setPassword(e.target.value);
+
+    if (!pwRegex.test(e.target.value)) {
+      setPasswordMessage("숫자+영문자+특수문자 조합 8자리 이상 입력해주세요.");
+      setIsPassword(false);
+    } else {
+      setPasswordMessage(null);
+      setIsPassword(true);
+    }
+  };
+
+  if (loading) {
+    return <p>Loading!!</p>;
+  }
+
+  if (hasErrors) {
+    return <p>cannot read data!!</p>;
+  }
+
+  // zustand 외부에서 axios post 요청시
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   const response = await axios
+  //     .post("http://localhost:3001/user", {
+  //       name,
+  //       email,
+  //       password,
+  //     })
+  //     .then((res) => console.log(res.data))
+  //     .then(() => alert("signup success"))
+  //     .then(() => setIsLogin(true))
+  //     .catch((err) => console.log(err.response.message));
+  // };
+
+  const handleSubmit = async () => {
+    await fetchData(name, email, password)
+      .then(() => alert("회원가입이 완료되었습니다!"))
+      .then(() => setIsLogin(true))
+      .then(() => navigate("/login"));
+  };
+
+  console.log(isLogin);
 
   return (
     <Container>
@@ -80,9 +180,32 @@ function SignUp() {
         </SNSBox>
         <SignupForm>
           <SignupContent>
-            <Input>Display name</Input>
-            <Input>Email</Input>
-            <Input>Password</Input>
+            <Input value={name} onChange={onNameChange}>
+              Display name
+            </Input>
+            {name.length > 0 && (
+              <div className={`message ${isName ? "success" : "error"}`}>
+                {nameMessage}
+              </div>
+            )}
+
+            <Input value={email} onChange={onEmailChange}>
+              Email
+            </Input>
+            {email.length > 0 && (
+              <div className={`message ${isEmail ? "success" : "error"}`}>
+                {emailMessage}
+              </div>
+            )}
+
+            <Input value={password} onChange={onPasswordChange} type="password">
+              Password
+            </Input>
+            {password.length > 0 && (
+              <div className={`message ${isPassword ? "success" : "error"}`}>
+                {passwordMessage}
+              </div>
+            )}
           </SignupContent>
           <Description>
             Passwords must contain at least eight characters, including at least
@@ -94,7 +217,13 @@ function SignUp() {
             invitations, company announcements, and digests.
             <QuestionImg />
           </CheckBox>
-          <ButtonPrimary width="268px" height="37px" onClick={fetchData}>
+          <ButtonPrimary
+            width="268px"
+            height="37px"
+            type="button"
+            onClick={handleSubmit}
+            disabled={!(isName && isEmail && isPassword)}
+          >
             Sign up
           </ButtonPrimary>
           <BottomDescription>
@@ -199,6 +328,7 @@ const Description = styled.div`
   align-items: center;
   color: #6a737c;
   margin-bottom: 1rem;
+  margin-top: 10px; ;
 `;
 
 const BottomDescription = styled.div`
@@ -233,4 +363,12 @@ const CheckBox = styled.div`
 
 const SignupContent = styled.div`
   width: 100%;
+
+  .message {
+    font-size: 11px;
+  }
+
+  .message.error {
+    color: red;
+  }
 `;

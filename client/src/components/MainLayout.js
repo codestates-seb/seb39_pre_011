@@ -6,24 +6,18 @@ const MainLayout = () => {
   return (
     <>
       <Container>
-        <div className='sidebox'>
-          <SideBar />
-        </div>
+        <SideBar />
         <Outlet />
       </Container>
     </>
   );
 };
 
-export default MainLayout;
-
 const Container = styled.main`
   width: 100%;
   display: flex;
   justify-content: center;
-
-  .sidebox {
-    position: relative;
-    border-right: 1px solid #e3e6e8;
-  }
 `;
+
+export default MainLayout;
+
