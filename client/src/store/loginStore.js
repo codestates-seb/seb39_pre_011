@@ -5,6 +5,7 @@ import axios from "axios";
 
 const store = (set) => ({
   data: [],
+  setData: (data) => set({ data }),
 
   // 회원정보 값
   name: "",
@@ -35,7 +36,7 @@ const store = (set) => ({
   hasErrors: false,
   setIsLogin: (isLogin) => set({ isLogin }),
 
-  // axios post 요청
+  // [SignUp] axios post 요청
   fetch: async (name, email, password) => {
     set(() => ({ loading: true }));
 
@@ -48,6 +49,9 @@ const store = (set) => ({
       });
       set((state) => ({ data: (state.data = response.data), loading: false }));
       console.log(response.data);
+      set(() => ({ name: "" }));
+      set(() => ({ email: "" }));
+      set(() => ({ password: "" }));
     } catch (err) {
       set(() => ({ hasErrors: true, loading: false }));
     }
