@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import QuestionList from "../components/Questions/QuestionList";
 import QuestionAside from "../components/Questions/QuestionAside";
+import usePostStore from "../store/postStore";
+import { readPostData } from "../api/postApi";
 
 function Questions() {
+  const { setPosts } = usePostStore();
+
+  useEffect(() => {
+    readPostData().then((response) => setPosts(response.data));
+  }, []);
+
   return (
     <Container>
       <QuestionList />

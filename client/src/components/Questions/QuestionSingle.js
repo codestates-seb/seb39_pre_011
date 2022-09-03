@@ -3,10 +3,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Tag } from "../ui/Tag";
 import { updatePostData } from "../../api/postApi";
+import { readUserData } from "../../api/userApi";
+import { readParamsPostData } from "../../api/postApi";
+import { readParamsAnswerData } from "../../api/answerApi";
 
 function QuestionSingle({ post }) {
   const [user, setUser] = useState({});
-  const [answer, setAnswer] = useState([]);
+  const [ask, setAsk] = useState([]);
   const [postAnswer, setPostAnswer] = useState([]);
 
   const handleView = () => {
@@ -17,17 +20,13 @@ function QuestionSingle({ post }) {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3001/user/${post.user_id}`)
-      .then((res) => res.json())
-      .then((res) => setUser(res));
-
-    fetch(`http://localhost:3001/answer?user_id=${post.user_id}`)
-      .then((res) => res.json())
-      .then((res) => setAnswer(res));
-
-    fetch(`http://localhost:3001/answer?question_id=${post.id}`)
-      .then((res) => res.json())
-      .then((res) => setPostAnswer(res));
+    readUserData(post.user_id).then((response) => setUser(response.data));
+    readParamsPostData({ user_id: post.user_id }).then((response) => {
+      setAsk(response.data);
+    });
+    readParamsAnswerData({ question_id: post.id }).then((response) =>
+      setPostAnswer(response.data)
+    );
   }, []);
 
   return (
@@ -48,7 +47,13 @@ function QuestionSingle({ post }) {
       </State>
       <Content>
         <h3>
-          <Link to={`/detail/${post.id}`} onClick={handleView}>
+          <Link
+            to={`/detail/${post.id}`}
+            onClick={() => {
+              handleView();
+              window.scrollTo(0, 0);
+            }}
+          >
             {post.title}
           </Link>
         </h3>
@@ -64,7 +69,7 @@ function QuestionSingle({ post }) {
               <img src="#" alt=" "></img>
             </a>
             <a href="/">{user.name}</a>
-            <span className="bold">{answer.length}</span>
+            <span className="bold">{ask.length}</span>
             <span>asked</span>
             <time>39 sec ago</time>
           </UserInfo>
@@ -96,6 +101,7 @@ const State = styled.div`
 `;
 
 const Content = styled.div`
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
