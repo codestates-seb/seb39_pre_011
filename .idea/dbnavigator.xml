@@ -28,19 +28,15 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="85e8a10e-5839-4b8f-b7b1-421eb565ac59">
-      <console name="prerproject" type="STANDARD" schema="preproject" session="Main" />
+    <connection id="f9951782-add0-4bff-9a4f-845c77a07d51">
+      <console name="preprojectDB" type="STANDARD" schema="mysql" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="85e8a10e-5839-4b8f-b7b1-421eb565ac59" />
-  </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="85e8a10e-5839-4b8f-b7b1-421eb565ac59" dataset="preproject.user" active-filter-id="" />
-    <filter-actions connection-id="85e8a10e-5839-4b8f-b7b1-421eb565ac59" dataset="preproject.user_roles" active-filter-id="" />
+    <connection id="f9951782-add0-4bff-9a4f-845c77a07d51" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -71,9 +67,9 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="85e8a10e-5839-4b8f-b7b1-421eb565ac59" active="true" signed="true">
+      <connection id="f9951782-add0-4bff-9a4f-845c77a07d51" active="true" signed="true">
         <database>
-          <name value="prerproject" />
+          <name value="preprojectDB" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
@@ -82,11 +78,11 @@
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="localhost" />
+          <host value="database-2.cbt1ncx6yqtf.ap-northeast-2.rds.amazonaws.com" />
           <port value="3306" />
           <database value="mysql" />
           <type value="USER_PASSWORD" />
-          <user value="root" />
+          <user value="admin" />
           <deprecated-pwd value="cm9vdDEyMzQ=" />
         </database>
         <properties>
