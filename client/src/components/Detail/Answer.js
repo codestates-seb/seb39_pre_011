@@ -35,6 +35,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   gap: 16px;
+  border-bottom: 1px solid #e3e6e8;
 
   svg {
     cursor: pointer;

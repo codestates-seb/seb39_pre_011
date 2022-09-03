@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { TagsInput } from "./TagsInput";
 import { TextArea, TextInput } from "./../ui/textInput";
 import { useNavigate } from "react-router-dom";
+import { createPostData } from "../../api/postApi";
 
 function AskForm() {
   const initialTags = [];
@@ -23,20 +24,17 @@ function AskForm() {
   const handleSubmit = () => {
     const date = new Date();
     const askData = {
+      user_id: "유저아이디",
       title: title,
       body: body,
       tags: tags,
+      created_at: date.toLocaleString("ko-kr"),
+      updated_at: "",
       vote: 0,
       view: 0,
-      answer: [],
-      createAt: date.toLocaleString("ko-kr"),
     };
 
-    fetch("http://localhost:3001/question", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(askData),
-    }).then((res) => {
+    createPostData(askData).then((res) => {
       if (res.status === 201) {
         navigate("/");
       }

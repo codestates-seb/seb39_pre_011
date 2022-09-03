@@ -18,6 +18,7 @@ const Pagenation = ({ total, page, setPage }) => {
               className={idx === clickPage ? "click" : null}
               key={idx}
               onClick={() => {
+                window.scrollTo(0, 0);
                 setPage(idx + 1);
                 handlePage(idx);
               }}
