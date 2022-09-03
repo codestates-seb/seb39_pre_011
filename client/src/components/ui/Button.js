@@ -11,6 +11,7 @@ export const ButtonPrimary = styled.button`
   font-size: 13px;
   text-align: center;
   padding: ${(props) => props.padding || "8px 10.4px"};
+  margin: ${(props) => props.margin || "none"};
   cursor: pointer;
 
   &:hover {

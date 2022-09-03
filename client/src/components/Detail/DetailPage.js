@@ -26,7 +26,6 @@ function DetailPage() {
     let modified = { ...singlePost, ...{ vote: count } };
     updatePostData(singlePost.id, modified).then(() => setSinglePost(modified));
   };
-
   return (
     <Container>
       <Side>

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable no-useless-escape */
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { ButtonPrimary, ButtonSNS } from "../components/ui/Button";
 import { NavLink } from "react-router-dom";
 import Input from "../components/ui/Input";
-import axios from "axios";
+import useStore from "../store/loginStore";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as Icon1 } from "../assets/signup/icon1.svg";
 import { ReactComponent as Icon2 } from "../assets/signup/icon2.svg";
@@ -15,10 +17,99 @@ import { ReactComponent as GithubImg } from "../assets/github.svg";
 import { ReactComponent as FacebookImg } from "../assets/facebook.svg";
 import { ReactComponent as TalentImg } from "../assets/signupTalent.svg";
 import { ReactComponent as QuestionImg } from "../assets/questionmark.svg";
-import useStore from "../store";
-import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  const {
+    name,
+    email,
+    password,
+    setName,
+    setEmail,
+    setPassword,
+    loading,
+    hasErrors,
+    isLogin,
+    isName,
+    isEmail,
+    isPassword,
+    setIsName,
+    setIsEmail,
+    setIsPassword,
+    nameMessage,
+    emailMessage,
+    passwordMessage,
+    setNameMessage,
+    setEmailMessage,
+    setPasswordMessage,
+  } = useStore((state) => state);
+
+  const navigate = useNavigate();
+
+  // zustand 내의 axios post 요청 가져오기
+  const fetchData = useStore((state) => state.fetch);
+
+  useEffect(() => {
+    console.log(isLogin);
+  }, [isLogin]);
+
+  // 이름 입력 변경 이벤트 핸들러
+  const onNameChange = (e) => {
+    setName(e.target.value);
+
+    if (e.target.value.length < 2 || e.target.value.length > 6) {
+      setNameMessage("2~6글자로 작성해주세요.");
+      setIsName(false);
+    } else {
+      setNameMessage(null);
+      setIsName(true);
+    }
+  };
+
+  // 이메일 입력 변경 이벤트 핸들러
+  const onEmailChange = (e) => {
+    // 이메일 유효성 검사
+    const emailRegex =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    setEmail(e.target.value);
+
+    if (!emailRegex.test(e.target.value)) {
+      setEmailMessage("이메일 형식이 틀렸습니다. 다시 작성해주세요.");
+      setIsEmail(false);
+    } else {
+      setEmailMessage(null);
+      setIsEmail(true);
+    }
+  };
+
+  // 비밀번호 입력 변경 이벤트 핸들러
+  const onPasswordChange = (e) => {
+    // 비밀번호 유효성 검사
+    const pwRegex = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
+    setPassword(e.target.value);
+
+    if (!pwRegex.test(e.target.value)) {
+      setPasswordMessage("숫자+영문자+특수문자 조합 8자리 이상 입력해주세요.");
+      setIsPassword(false);
+    } else {
+      setPasswordMessage(null);
+      setIsPassword(true);
+    }
+  };
+
+  if (loading) {
+    return <p>Loading!!</p>;
+  }
+
+  if (hasErrors) {
+    return <p>cannot read data!!</p>;
+  }
+
+  const handleSubmit = async () => {
+    await fetchData(name, email, password)
+      .then(() => alert("회원가입이 완료되었습니다!"))
+      .then(() => navigate("/login"));
+  };
+
   return (
     <Container>
       <LeftBox>
@@ -78,9 +169,32 @@ function SignUp() {
         </SNSBox>
         <SignupForm>
           <SignupContent>
-            <Input name="name">Display name</Input>
-            <Input name="email">Email</Input>
-            <Input name="password">Password</Input>
+            <Input value={name} onChange={onNameChange}>
+              Display name
+            </Input>
+            {name.length > 0 && (
+              <div className={`message ${isName ? "success" : "error"}`}>
+                {nameMessage}
+              </div>
+            )}
+
+            <Input value={email} onChange={onEmailChange}>
+              Email
+            </Input>
+            {email.length > 0 && (
+              <div className={`message ${isEmail ? "success" : "error"}`}>
+                {emailMessage}
+              </div>
+            )}
+
+            <Input value={password} onChange={onPasswordChange} type="password">
+              Password
+            </Input>
+            {password.length > 0 && (
+              <div className={`message ${isPassword ? "success" : "error"}`}>
+                {passwordMessage}
+              </div>
+            )}
           </SignupContent>
           <Description>
             Passwords must contain at least eight characters, including at least
@@ -92,7 +206,13 @@ function SignUp() {
             invitations, company announcements, and digests.
             <QuestionImg />
           </CheckBox>
-          <ButtonPrimary width="268px" height="37px" type="button">
+          <ButtonPrimary
+            width="268px"
+            height="37px"
+            type="button"
+            onClick={handleSubmit}
+            disabled={!(isName && isEmail && isPassword)}
+          >
             Sign up
           </ButtonPrimary>
           <BottomDescription>
@@ -197,6 +317,7 @@ const Description = styled.div`
   align-items: center;
   color: #6a737c;
   margin-bottom: 1rem;
+  margin-top: 10px; ;
 `;
 
 const BottomDescription = styled.div`
@@ -231,4 +352,12 @@ const CheckBox = styled.div`
 
 const SignupContent = styled.div`
   width: 100%;
+
+  .message {
+    font-size: 11px;
+  }
+
+  .message.error {
+    color: red;
+  }
 `;
