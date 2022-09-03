@@ -3,6 +3,7 @@ package com.example.server.User;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class UserController {
     private final UserRepository userRepository;
 
     // 회원가입
-    @PostMapping("/join")
+    @PostMapping("/singup")
     public Long join(@RequestBody Map<String, String> user) {
         return userRepository.save(User.builder()
                 .name(user.get("name"))
