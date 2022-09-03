@@ -28,7 +28,7 @@ function App() {
             <Route path="/tags" element={<Tags />} />
             <Route path="/users" element={<Users />} />
             <Route path="/mypage" element={<MyPage />} />
-            {/* <Route path="/users:id" element={<MyPage />} /> */}
+            {/* <Route path="/users/:id" element={<MyPage />} /> */}
           </Route>
 
           <Route
