@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ButtonPrimary } from "../ui/Button";
@@ -6,25 +6,17 @@ import { ReactComponent as Filter } from "./../../assets/filter.svg";
 import QuestionSingle from "./QuestionSingle";
 import Pagenation from "../ui/Pagenation";
 import usePostStore from "../../store/postStore";
-import axios from "axios";
 import QuestionFilter from "./QuestionFilter";
 
 function QuestionList() {
   const [page, setPage] = useState(1);
   const [fliterList, setFilterList] = useState(false);
+  const { posts } = usePostStore();
   const offset = (page - 1) * 10;
-  const { posts, setPosts } = usePostStore();
 
   const handleFilter = () => {
     setFilterList(!fliterList);
   };
-
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: "http://localhost:3001/question",
-    }).then((response) => setPosts(response.data));
-  }, []);
 
   return (
     <Container>

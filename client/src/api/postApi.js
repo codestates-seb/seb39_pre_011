@@ -1,9 +1,16 @@
 import axios from "axios";
 
 export const readPostData = (id) => {
+  let url;
+  if (id === undefined) {
+    url = "http://localhost:3001/question";
+  } else {
+    url = `http://localhost:3001/question/${id}`;
+  }
+
   return axios({
     method: "GET",
-    url: `http://localhost:3001/question/${id}`,
+    url: url,
     params: {},
   });
 };

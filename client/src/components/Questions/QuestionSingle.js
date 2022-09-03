@@ -21,9 +21,9 @@ function QuestionSingle({ post }) {
 
   useEffect(() => {
     readUserData(post.user_id).then((response) => setUser(response.data));
-    readParamsPostData({ user_id: post.user_id }).then((response) =>
-      setAsk(response.data)
-    );
+    readParamsPostData({ user_id: post.user_id }).then((response) => {
+      setAsk(response.data);
+    });
     readParamsAnswerData({ question_id: post.id }).then((response) =>
       setPostAnswer(response.data)
     );
