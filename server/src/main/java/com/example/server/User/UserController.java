@@ -20,7 +20,7 @@ public class UserController {
     private final UserRepository userRepository;
 
     // 회원가입
-    @PostMapping("/singup")
+    @PostMapping("/user/signup")
     public Long join(@RequestBody Map<String, String> user) {
         return userRepository.save(User.builder()
                 .name(user.get("name"))
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     // 로그인
-    @PostMapping("/login")
+    @PostMapping("/user/login")
     public String login(@RequestBody Map<String, String> user) {
         User member = userRepository.findByEmail(user.get("email"))
                 .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 E-MAIL 입니다."));
