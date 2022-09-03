@@ -2,12 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ButtonPrimary } from "../ui/Button";
+import usePostStore from "../../store/postStore";
 
-function Detailtitle({ data }) {
+function Detailtitle() {
+  const { singlePost } = usePostStore();
+
   return (
     <Container>
       <div className="detail_title">
-        <h1>{data.title}</h1>
+        <h1>{singlePost.title}</h1>
         <Link to="/ask">
           <ButtonPrimary width={"auto"}>Ask Question</ButtonPrimary>
         </Link>
@@ -20,7 +23,7 @@ function Detailtitle({ data }) {
           <span>Modified</span> today
         </div>
         <div>
-          <span>Viewed</span> {data.view} times
+          <span>Viewed</span> {singlePost.view} times
         </div>
       </div>
     </Container>

@@ -1,9 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Tag } from "../ui/Tag";
+import { updatePostData } from "../../api/postApi";
 
-function Post({ post }) {
+function QuestionSingle({ post }) {
+  const [user, setUser] = useState({});
+  const [answer, setAnswer] = useState([]);
+  const [postAnswer, setPostAnswer] = useState([]);
+
+  const handleView = () => {
+    let clickView = post.view;
+    clickView++;
+    let postView = { ...post, ...{ view: clickView } };
+    updatePostData(post.id, postView);
+  };
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/user/${post.user_id}`)
+      .then((res) => res.json())
+      .then((res) => setUser(res));
+
+    fetch(`http://localhost:3001/answer?user_id=${post.user_id}`)
+      .then((res) => res.json())
+      .then((res) => setAnswer(res));
+
+    fetch(`http://localhost:3001/answer?question_id=${post.id}`)
+      .then((res) => res.json())
+      .then((res) => setPostAnswer(res));
+  }, []);
+
   return (
     <Li>
       <State>
@@ -12,7 +38,7 @@ function Post({ post }) {
           <span> votes</span>
         </div>
         <div className="font_color">
-          <span>0</span>
+          <span>{postAnswer.length}</span>
           <span> answers</span>
         </div>
         <div className="font_color">
@@ -22,7 +48,9 @@ function Post({ post }) {
       </State>
       <Content>
         <h3>
-          <Link to={`/detail/${post.question_id}`}>{post.title}</Link>
+          <Link to={`/detail/${post.id}`} onClick={handleView}>
+            {post.title}
+          </Link>
         </h3>
         <p>{post.body}</p>
         <div className="content-info">
@@ -31,15 +59,15 @@ function Post({ post }) {
               <Tag key={idx}>{el}</Tag>
             ))}
           </div>
-          <div className="content-info-user">
+          <UserInfo>
             <a href="/">
               <img src="#" alt=" "></img>
             </a>
-            <a href="/">kimcoding</a>
-            <span className="bold">3</span>
-            <span>aksed</span>
+            <a href="/">{user.name}</a>
+            <span className="bold">{answer.length}</span>
+            <span>asked</span>
             <time>39 sec ago</time>
-          </div>
+          </UserInfo>
         </div>
       </Content>
     </Li>
@@ -97,27 +125,27 @@ const Content = styled.div`
     display: flex;
     gap: 4px;
   }
+`;
 
-  .content-info-user {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
+const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
 
-    a {
-      color: #0a95ff;
-    }
+  a {
+    color: #0a95ff;
+  }
 
-    > span,
-    time {
-      color: rgb(106, 115, 124);
-    }
+  > span,
+  time {
+    color: rgb(106, 115, 124);
+  }
 
-    .bold {
-      color: rgb(82, 89, 96);
-      font-weight: 700;
-    }
+  .bold {
+    color: rgb(82, 89, 96);
+    font-weight: 700;
   }
 `;
 
-export default Post;
+export default QuestionSingle;

@@ -6,23 +6,18 @@ import { ReactComponent as ArrowBottom } from "./../../assets/arrowbottom.svg";
 import { ReactComponent as BookMark } from "./../../assets/bookmark.svg";
 import { ReactComponent as Time } from "./../../assets/time.svg";
 
-function Answer() {
+function Answer({ answer }) {
   return (
     <Container>
       <div className="detail_aside">
         <ArrowTop />
-        <span>10</span>
+        <span>{answer.vote}</span>
         <ArrowBottom />
         <BookMark />
         <Time />
       </div>
       <div className="detail_content">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos,
-          aperiam suscipit! In beatae tempora, voluptate veritatis, tenetur
-          temporibus quaerat accusamus soluta obcaecati consequuntur sequi
-          laboriosam dolorum, sunt fugiat. Alias, consequatur!
-        </p>
+        <p>{answer.content}</p>
         <div className="detail_content-footer">
           <div>
             <button>Share</button>
