@@ -74,14 +74,17 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.get("http://localhost:3001/user");
+      const response = await axios.post("/login", {
+        email,
+        password,
+      });
 
       // filter 기능 (BE 연결시 없어도 되는 기능)
-      const filtered = response.data.find(
-        (user) => user.email === email && user.password === password
-      );
+      // const filtered = response.data.find(
+      //   (user) => user.email === email && user.password === password
+      // );
 
-      setData(filtered);
+      setData(response.data);
       console.log(data);
 
       if (data !== undefined && data.length !== 0) {
