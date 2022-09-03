@@ -41,11 +41,10 @@ const store = (set) => ({
     set(() => ({ loading: true }));
 
     try {
-      const response = await axios.post("http://localhost:3001/user", {
+      const response = await axios.post("/singup", {
         name,
         email,
         password,
-        profile_photo: "http://placehold.it/32x32",
       });
       set((state) => ({ data: (state.data = response.data), loading: false }));
       console.log(response.data);
