@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Footer from "./components/Footer";
 import useStore from "./store/loginStore";
+import axios from "axios";
 
 function App() {
   const { pathname } = useLocation();
@@ -26,6 +27,14 @@ function App() {
       setIsLogin(true);
     }
   }, []);
+
+  // axios
+  //   .post("/singup", {
+  //     name: "dskf",
+  //     email: "sdfd@gmail.com",
+  //     password: "sdkfl!!11",
+  //   })
+  //   .then((res) => console.log(res.data));
 
   return (
     <>
