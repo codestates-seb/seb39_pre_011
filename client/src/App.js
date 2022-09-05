@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import Questions from "./pages/Questions";
@@ -16,7 +17,24 @@ import axios from "axios";
 
 function App() {
   const { pathname } = useLocation();
-  const { isLogin } = useStore((state) => state);
+  const { isLogin, setIsLogin } = useStore((state) => state);
+
+  // 새로고침시에도 로그인 유지
+  const tokenInfo = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (tokenInfo) {
+      setIsLogin(true);
+    }
+  }, []);
+
+  // axios
+  //   .post("/singup", {
+  //     name: "dskf",
+  //     email: "sdfd@gmail.com",
+  //     password: "sdkfl!!11",
+  //   })
+  //   .then((res) => console.log(res.data));
 
   // axios
   //   .post("/singup", {

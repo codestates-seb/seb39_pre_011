@@ -48,10 +48,6 @@ function SignUp() {
   // zustand 내의 axios post 요청 가져오기
   const fetchData = useStore((state) => state.fetch);
 
-  useEffect(() => {
-    console.log(isLogin);
-  }, [isLogin]);
-
   // 이름 입력 변경 이벤트 핸들러
   const onNameChange = (e) => {
     setName(e.target.value);

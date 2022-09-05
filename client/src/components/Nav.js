@@ -2,17 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import Search from "./ui/Search";
 import LogoSrc from "../assets/sprites.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ButtonPrimary } from "./ui/Button";
 import { ReactComponent as InboxImg } from "../assets/inbox.svg";
 import { ReactComponent as AchievementsImg } from "../assets/achievements.svg";
 import { ReactComponent as HelpImg } from "../assets/help.svg";
 import { ReactComponent as LogoutImg } from "../assets/logout.svg";
-import profile from "../assets/profile.jpg";
 import useStore from "../store/loginStore";
+import globalStore from "../store/globalStore";
+import Popup from "./ui/Popup";
 
 const Nav = () => {
-  const isLogin = useStore((state) => state.isLogin);
+  const navigate = useNavigate();
+  const { isOpen, setIsOpen } = globalStore((state) => state);
+  const { isLogin, setIsLogin } = useStore((state) => state);
+
+  const openPopupHandler = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <Header>
@@ -33,7 +40,6 @@ const Nav = () => {
               <NavLink to="/mypage" style={{ display: "flex" }}>
                 <ProfileBox>
                   <img src="https://source.unsplash.com/random" alt="profile" />
-                  {/* <img src={profile} alt="profile" /> */}
                   <span>1</span>
                 </ProfileBox>
               </NavLink>
@@ -46,9 +52,10 @@ const Nav = () => {
               <ImgBox>
                 <HelpImg />
               </ImgBox>
-              <ImgBox>
+              <ImgBox onClick={openPopupHandler}>
                 <LogoutImg />
               </ImgBox>
+              {isOpen ? <Popup /> : null}
             </div>
           </BoxLogin>
         ) : (
