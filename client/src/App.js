@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import Questions from "./pages/Questions";
@@ -12,12 +13,19 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Footer from "./components/Footer";
 import useStore from "./store/loginStore";
-import axios from "axios";
-import { useEffect } from "react";
 
 function App() {
   const { pathname } = useLocation();
   const { isLogin, setIsLogin } = useStore((state) => state);
+
+  // 새로고침시에도 로그인 유지
+  const tokenInfo = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (tokenInfo) {
+      setIsLogin(true);
+    }
+  }, []);
 
   return (
     <>

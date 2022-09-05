@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import LogoSrc from "../assets/sprites.svg";
 import { ButtonPrimary, ButtonSNS } from "../components/ui/Button";
@@ -18,7 +18,6 @@ function Login() {
     password,
     setEmail,
     setPassword,
-    isLogin,
     setIsLogin,
     isEmail,
     setIsEmail,
@@ -31,18 +30,6 @@ function Login() {
   } = useStore((state) => state);
 
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  // if (data) {
-  //   // localStorage.setItem("token", data);
-  //   // Token 추가
-  //   localStorage.setItem("login-token", data);
-  //   console.log("get token!!");
-  //   console.log(localStorage.getItem("login-token"));
-  // }
-  // Token 읽어오기
-  // console.log(localStorage.getItem("token"));
-  // }, [data]);
 
   // 이메일 입력 변경 이벤트 핸들러
   const onEmailChange = (e) => {
@@ -88,17 +75,19 @@ function Login() {
       alert("로그인에 성공하셨습니다.");
       setIsLogin(true);
       navigate("/");
+      setEmail("");
+      setPassword("");
     } catch (error) {
       if ((res) => res.data.status === 500) {
         console.log("회원정보가 일치하지 않습니다.");
-        alert("회원 정보가 일치않지 않습니다.");
+        alert("회원 정보가 일치하지 않습니다.");
       }
+      setEmail("");
+      setPassword("");
     }
+    setEmail("");
+    setPassword("");
   };
-
-  if (isLogin) {
-    navigate("/");
-  }
 
   return (
     <Container>
