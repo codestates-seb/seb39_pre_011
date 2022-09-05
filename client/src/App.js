@@ -36,6 +36,14 @@ function App() {
   //   })
   //   .then((res) => console.log(res.data));
 
+  // axios
+  //   .post("/singup", {
+  //     name: "dskf",
+  //     email: "sdfd@gmail.com",
+  //     password: "sdkfl!!11",
+  //   })
+  //   .then((res) => console.log(res.data));
+
   return (
     <>
       <AppContainer>

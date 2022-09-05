@@ -75,7 +75,6 @@ function Login() {
         email,
         password,
       });
-
       // Token 추가
       localStorage.setItem("token", response.data);
       console.log("get token!!");
