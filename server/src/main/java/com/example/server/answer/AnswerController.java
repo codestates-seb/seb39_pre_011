@@ -8,46 +8,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("answer")
+@RequestMapping("/answer/{answer-id}")
 public class AnswerController {
 
     // 답변 작성
     @PostMapping
-    public ResponseEntity postAnswer(@RequestParam("answerId") long answerId,
-                                     @RequestParam("userId") long userId,
-                                     @RequestParam("questionId") long questionId,
-                                     @RequestParam("content") String content,
-                                     @RequestParam("vote") int vote) {
-
-        Map<String, Object> body = new HashMap<>();
-        body.put("answerId", answerId);
-        body.put("userId", userId);
-        body.put("questionId", questionId);
-        body.put("content", content);
-        body.put("vote", vote);
-
-
-        return new ResponseEntity<Map>(body, HttpStatus.CREATED);
-
+    public ResponseEntity postAnswer(@RequestBody AnswerPostDto answerPatchDto) {
+        return new ResponseEntity<>(answerPatchDto, HttpStatus.CREATED);
     }
-
 
     // 답변 수정
     @PatchMapping("/answer/{answer-id}")
-    public ResponseEntity patchAnswer(@RequestParam("answerId") long answerId,
-                                      @RequestParam("userId") long userId,
-                                      @RequestParam("questionId") long questionId,
-                                      @RequestParam("content") String content,
-                                      @RequestParam("vote") int vote) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("answerId", answerId);
-        body.put("userId", userId);
-        body.put("questionId", questionId);
-        body.put("content", content);
-        body.put("vote", vote);
+    public ResponseEntity patchAnswer(@PathVariable("answerId") long answerId,
+                                      @RequestBody AnswerPatchDto answerPatchDto) {
+        answerPatchDto.setAnswerId(answerId);
+        answerPatchDto.setContent("content");
 
-
-        return new ResponseEntity<Map>(body, HttpStatus.OK);
+        return new ResponseEntity<>(answerPatchDto, HttpStatus.OK);
     }
 
     // 답변 삭제

@@ -8,21 +8,40 @@ import Answer from "../components/Detail/Answer";
 import InputAnswer from "../components/Detail/InputAnswer";
 import { readPostData } from "../api/postApi";
 import { readParamsAnswerData } from "../api/answerApi";
+import { readUserData } from "../api/userApi";
 import usePostStore from "../store/postStore";
+import useUserStore from "../store/userStore";
 import useAnswerStore from "../store/answerStore";
 
 function Detail() {
   const { question_id } = useParams();
-
-  const { setSinglePost } = usePostStore();
+  const { singlePost, setSinglePost } = usePostStore();
+  const { setSingleUser } = useUserStore();
   const { questionAnswer: answers, setQuestionAnswer } = useAnswerStore();
 
-  useEffect(() => {
-    readPostData(question_id).then((response) => setSinglePost(response.data));
-
-    readParamsAnswerData({ question_id: question_id }).then((response) =>
+  const hi = async () => {
+    await readParamsAnswerData({ question_id: question_id }).then((response) =>
       setQuestionAnswer(response.data)
     );
+
+    await readUserData(singlePost.user_id).then((response) =>
+      setSingleUser(response.data)
+    );
+  };
+
+  useEffect(() => {
+    readPostData(question_id).then((response) => {
+      setSinglePost(response.data);
+    });
+
+    // readParamsAnswerData({ question_id: question_id }).then((response) =>
+    //   setQuestionAnswer(response.data)
+    // );
+
+    // readUserData(singlePost.user_id).then((response) =>
+    //   setSingleUser(response.data)
+    // );
+    hi();
   }, []);
 
   return (
@@ -57,6 +76,7 @@ const Container = styled.section`
     gap: 24px;
   }
   .detail_main-content {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 24px;
