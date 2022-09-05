@@ -9,7 +9,12 @@ const Input = ({ children, value, type, onChange, sub }) => {
         <span>{sub}</span>
       </Box>
 
-      <input defaultValue={value} onChange={onChange} type={type} />
+      <input
+        defaultValue={value}
+        onChange={onChange}
+        type={type}
+        autoComplete="off"
+      />
     </Container>
   );
 };
