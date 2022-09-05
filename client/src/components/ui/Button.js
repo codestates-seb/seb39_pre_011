@@ -11,6 +11,7 @@ export const ButtonPrimary = styled.button`
   font-size: 13px;
   text-align: center;
   padding: ${(props) => props.padding || "8px 10.4px"};
+  margin: ${(props) => props.margin || "none"};
   cursor: pointer;
 
   &:hover {
@@ -39,5 +40,26 @@ export const ButtonSNS = styled.button`
 
   &:hover {
     opacity: 1;
+  }
+`;
+
+export const ButtonSecondary = styled.button`
+  background: ${(props) => props.background || "#fff"};
+  color: ${(props) => props.color || "#6a737c"};
+  border-radius: 3px;
+  border: 1px solid ${(props) => props.border || "#9fa6ad"};
+  width: ${(props) => props.width || "auto"};
+  height: ${(props) => props.height || "auto"};
+  font-size: 12px;
+  text-align: center;
+  padding: ${(props) => props.padding || "10px"};
+  margin: ${(props) => props.margin || "3px"};
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: ${(props) => props.hoverbackground || "#f8f9f9"};
   }
 `;

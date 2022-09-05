@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as LogoImg } from "../assets/logo.svg";
-import Nav from "./Nav";
 
 function Footer() {
   return (

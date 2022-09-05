@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import LogoSrc from "../assets/sprites.svg";
 import { ButtonPrimary, ButtonSNS } from "../components/ui/Button";
 import Input from "../components/ui/Input";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import useStore from "../store/loginStore";
+import axios from "axios";
 
 import { ReactComponent as GoogleImg } from "../assets/google.svg";
 import { ReactComponent as GithubImg } from "../assets/github.svg";
@@ -11,6 +13,88 @@ import { ReactComponent as FacebookImg } from "../assets/facebook.svg";
 import { ReactComponent as TalentImg } from "../assets/signupTalent.svg";
 
 function Login() {
+  const {
+    email,
+    password,
+    setEmail,
+    setPassword,
+    setIsLogin,
+    isEmail,
+    setIsEmail,
+    isPassword,
+    setIsPassword,
+    emailMessage,
+    setEmailMessage,
+    passwordMessage,
+    setPasswordMessage,
+  } = useStore((state) => state);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Token 추가
+    localStorage.setItem("token", data);
+    // Token 읽어오기
+    console.log(localStorage.getItem("token"));
+  }, [data]);
+
+  // 이메일 입력 변경 이벤트 핸들러
+  const onEmailChange = (e) => {
+    const emailRegex =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    setEmail(e.target.value);
+
+    if (!emailRegex.test(e.target.value)) {
+      setEmailMessage("이메일 형식이 틀렸습니다. 다시 작성해주세요.");
+      setIsEmail(false);
+    } else {
+      setEmailMessage(null);
+      setIsEmail(true);
+    }
+  };
+
+  // 비밀번호 입력 변경 이벤트 핸들러
+  const onPasswordChange = (e) => {
+    const pwRegex = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
+    setPassword(e.target.value);
+
+    if (!pwRegex.test(e.target.value)) {
+      setPasswordMessage("숫자+영문자+특수문자 조합 8자리 이상 입력해주세요.");
+      setIsPassword(false);
+    } else {
+      setPasswordMessage(null);
+      setIsPassword(true);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("/login", {
+        email,
+        password,
+      });
+      // Token 추가
+      localStorage.setItem("token", response.data);
+      console.log("get token!!");
+      alert("로그인에 성공하셨습니다.");
+      setIsLogin(true);
+      navigate("/");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      if ((res) => res.data.status === 500) {
+        console.log("회원정보가 일치하지 않습니다.");
+        alert("회원 정보가 일치하지 않습니다.");
+      }
+      setEmail("");
+      setPassword("");
+    }
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <Container>
       <NavLink to="/">
@@ -33,9 +117,35 @@ function Login() {
 
       <LoginForm>
         <LoginContent>
-          <Input>Email</Input>
-          <Input sub="Forgot passowrd?">Password</Input>
-          <ButtonPrimary width="240px" height="37px">
+          <Input value={email} onChange={onEmailChange}>
+            Email
+          </Input>
+          {email.length > 0 && (
+            <div className={`message ${isEmail ? "success" : "error"}`}>
+              {emailMessage}
+            </div>
+          )}
+          <Input
+            value={password}
+            onChange={onPasswordChange}
+            type="password"
+            sub="Forgot passowrd?"
+          >
+            Password
+          </Input>
+
+          {password.length > 0 && (
+            <div className={`message ${isPassword ? "success" : "error"}`}>
+              {passwordMessage}
+            </div>
+          )}
+          <ButtonPrimary
+            width="240px"
+            height="37px"
+            margin="10px 0 0 0"
+            onClick={handleSubmit}
+            disabled={!(isEmail && isPassword)}
+          >
             Log in
           </ButtonPrimary>
         </LoginContent>
@@ -97,7 +207,15 @@ const LoginForm = styled.div`
   margin-bottom: 24px;
 `;
 
-const LoginContent = styled.div``;
+const LoginContent = styled.div`
+  .message {
+    font-size: 11px;
+  }
+
+  .message.error {
+    color: red;
+  }
+`;
 
 const Description = styled.div`
   margin-top: 12px;

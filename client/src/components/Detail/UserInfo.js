@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import useUserStore from "../../store/userStore";
 
 function UserInfo() {
+  const { singleUser } = useUserStore();
+  // console.log(singleUser);
   return (
     <Container>
       <div className="askedTime">asked 8 mins ago</div>
       <img src="" alt="" />
-      <div className="userName">kimcoding</div>
+      <div className="userName">{singleUser.name}</div>
     </Container>
   );
 }

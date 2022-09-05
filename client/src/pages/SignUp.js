@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { ButtonPrimary, ButtonSNS } from "../components/ui/Button";
 import { NavLink } from "react-router-dom";
@@ -29,7 +29,6 @@ function SignUp() {
     loading,
     hasErrors,
     isLogin,
-    setIsLogin,
     isName,
     isEmail,
     isPassword,
@@ -46,14 +45,15 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  // zustand 내의 axios post 요청
+  // zustand 내의 axios post 요청 가져오기
   const fetchData = useStore((state) => state.fetch);
 
+  // 이름 입력 변경 이벤트 핸들러
   const onNameChange = (e) => {
     setName(e.target.value);
 
-    if (e.target.value.length < 2 || e.target.value.length > 5) {
-      setNameMessage("2~5글자로 작성해주세요.");
+    if (e.target.value.length < 2 || e.target.value.length > 6) {
+      setNameMessage("2~6글자로 작성해주세요.");
       setIsName(false);
     } else {
       setNameMessage(null);
@@ -61,7 +61,9 @@ function SignUp() {
     }
   };
 
+  // 이메일 입력 변경 이벤트 핸들러
   const onEmailChange = (e) => {
+    // 이메일 유효성 검사
     const emailRegex =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     setEmail(e.target.value);
@@ -75,7 +77,9 @@ function SignUp() {
     }
   };
 
+  // 비밀번호 입력 변경 이벤트 핸들러
   const onPasswordChange = (e) => {
+    // 비밀번호 유효성 검사
     const pwRegex = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
     setPassword(e.target.value);
 
@@ -96,30 +100,11 @@ function SignUp() {
     return <p>cannot read data!!</p>;
   }
 
-  // zustand 외부에서 axios post 요청시
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const response = await axios
-  //     .post("http://localhost:3001/user", {
-  //       name,
-  //       email,
-  //       password,
-  //     })
-  //     .then((res) => console.log(res.data))
-  //     .then(() => alert("signup success"))
-  //     .then(() => setIsLogin(true))
-  //     .catch((err) => console.log(err.response.message));
-  // };
-
   const handleSubmit = async () => {
     await fetchData(name, email, password)
       .then(() => alert("회원가입이 완료되었습니다!"))
-      .then(() => setIsLogin(true))
       .then(() => navigate("/login"));
   };
-
-  console.log(isLogin);
 
   return (
     <Container>

@@ -94,6 +94,10 @@ const Content = styled.div`
     font-size: 15px;
     color: #232629;
     line-height: 22.5px;
+
+    /* > pre {
+      white-space: pre-wrap;
+    } */
   }
 
   > .content_tags {
