@@ -12,7 +12,7 @@ import { ReactComponent as NetworkImg } from "../assets/mypage/network.svg";
 import { ReactComponent as PencilImg } from "../assets/mypage/pencil.svg";
 
 function Mypage() {
-  const { name, email, password } = useStore((state) => state);
+  const { name } = useStore((state) => state);
 
   return (
     <Container>

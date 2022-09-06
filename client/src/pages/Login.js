@@ -18,7 +18,6 @@ function Login() {
     password,
     setEmail,
     setPassword,
-    isLogin,
     setIsLogin,
     isEmail,
     setIsEmail,
@@ -28,18 +27,9 @@ function Login() {
     setEmailMessage,
     passwordMessage,
     setPasswordMessage,
-    data,
-    setData,
   } = useStore((state) => state);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Token 추가
-    localStorage.setItem("token", data);
-    // Token 읽어오기
-    console.log(localStorage.getItem("token"));
-  }, [data]);
 
   // 이메일 입력 변경 이벤트 핸들러
   const onEmailChange = (e) => {
@@ -78,34 +68,26 @@ function Login() {
         email,
         password,
       });
-
-      // filter 기능 (BE 연결시 없어도 되는 기능)
-      // const filtered = response.data.find(
-      //   (user) => user.email === email && user.password === password
-      // );
-
-      setData(response.data);
-      console.log(data);
-
-      if (data !== undefined && data.length !== 0) {
-        console.log("login success");
-        setIsLogin(true);
-        alert("login success");
-      } else {
-        console.log("login fail");
-        setIsLogin(false);
-        alert("login fail");
-        setEmail("");
-        setPassword("");
-      }
+      // Token 추가
+      localStorage.setItem("token", response.data);
+      console.log("get token!!");
+      alert("로그인에 성공하셨습니다.");
+      setIsLogin(true);
+      navigate("/");
+      setEmail("");
+      setPassword("");
     } catch (error) {
-      console.log(error);
+      if ((res) => res.data.status === 500) {
+        console.log("회원정보가 일치하지 않습니다.");
+        alert("회원 정보가 일치하지 않습니다.");
+      }
+      setEmail("");
+      setPassword("");
     }
+    setEmail("");
+    setPassword("");
   };
 
-  if (isLogin) {
-    navigate("/");
-  }
   return (
     <Container>
       <NavLink to="/">
