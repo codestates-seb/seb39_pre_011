@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import LogoSrc from "../assets/sprites.svg";
 import { ButtonPrimary, ButtonSNS } from "../components/ui/Button";
@@ -34,6 +34,13 @@ function Login() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Token 추가
+    localStorage.setItem("token", data);
+    // Token 읽어오기
+    console.log(localStorage.getItem("token"));
+  }, [data]);
+
   // 이메일 입력 변경 이벤트 핸들러
   const onEmailChange = (e) => {
     const emailRegex =
@@ -67,14 +74,17 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.get("http://localhost:3001/user");
+      const response = await axios.post("/login", {
+        email,
+        password,
+      });
 
       // filter 기능 (BE 연결시 없어도 되는 기능)
-      const filtered = response.data.find(
-        (user) => user.email === email && user.password === password
-      );
+      // const filtered = response.data.find(
+      //   (user) => user.email === email && user.password === password
+      // );
 
-      setData(filtered);
+      setData(response.data);
       console.log(data);
 
       if (data !== undefined && data.length !== 0) {

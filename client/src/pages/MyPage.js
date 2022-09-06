@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import useStore from "../store/loginStore";
+import { useParams } from "react-router-dom";
+import { ButtonSecondary } from "../components/ui/Button";
+
+import { ReactComponent as CakeImg } from "../assets/mypage/cake.svg";
+import { ReactComponent as CalendarImg } from "../assets/mypage/calendar.svg";
+import { ReactComponent as ClockImg } from "../assets/mypage/clock.svg";
+
+import { ReactComponent as NetworkImg } from "../assets/mypage/network.svg";
+import { ReactComponent as PencilImg } from "../assets/mypage/pencil.svg";
 
 function Mypage() {
   const { name, email, password } = useStore((state) => state);
@@ -12,18 +21,32 @@ function Mypage() {
           <img src="https://source.unsplash.com/random" alt="profile" />
         </ProfileBox>
         <InfoBox>
-          <div>{name}</div>
-          <div>{email}</div>
-          <div>{password}</div>
-          <div>
-            <div>Member for 10 days</div>
-            <div>Last seen this week</div>
-            <div>Visited 10 days, 10 consecutive</div>
-          </div>
+          <NameBox>{name}</NameBox>
+          <NameBox>Peter</NameBox>
+          <SubBox>
+            <div>
+              <CakeImg />
+              <span> Member for 10 days</span>
+            </div>
+            <div>
+              <ClockImg />
+              <span> Last seen this week</span>
+            </div>
+            <div>
+              <CalendarImg />
+              <span>Visited 10 days, 10 consecutive</span>
+            </div>
+          </SubBox>
         </InfoBox>
         <ButtonBox>
-          <button>Edit profile</button>
-          <button>Network profile</button>
+          <ButtonSecondary>
+            <PencilImg />
+            <span> Edit profile</span>
+          </ButtonSecondary>
+          <ButtonSecondary>
+            <NetworkImg />
+            <span> Network profile</span>
+          </ButtonSecondary>
         </ButtonBox>
       </TopBox>
       <TabBox></TabBox>
@@ -45,7 +68,7 @@ const Container = styled.div`
 const TopBox = styled.div`
   width: 100%;
   display: flex;
-  height: 23%;
+  height: 144px;
 `;
 
 const ProfileBox = styled.div`
@@ -74,6 +97,43 @@ const TabBox = styled.div``;
 
 const BottomBox = styled.div``;
 
-const InfoBox = styled.div``;
+const InfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 8px;
+`;
 
-const ButtonBox = styled.div``;
+const ButtonBox = styled.div`
+  display: flex;
+  position: absolute;
+  top: 50;
+  right: 10%;
+
+  span {
+    letter-spacing: 0.5px;
+    margin-left: 5px;
+  }
+`;
+
+const NameBox = styled.div`
+  font-size: 34px;
+  margin: 4px 4px 12px;
+`;
+
+const SubBox = styled.div`
+  display: flex;
+
+  color: #6a737c;
+  font-size: 13px;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+  }
+  span {
+    margin: 0 5px;
+  }
+`;
