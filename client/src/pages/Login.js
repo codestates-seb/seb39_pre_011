@@ -31,13 +31,6 @@ function Login() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Token 추가
-    localStorage.setItem("token", data);
-    // Token 읽어오기
-    console.log(localStorage.getItem("token"));
-  }, [data]);
-
   // 이메일 입력 변경 이벤트 핸들러
   const onEmailChange = (e) => {
     const emailRegex =

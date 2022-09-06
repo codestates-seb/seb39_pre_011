@@ -14,6 +14,8 @@ function QuestionList() {
   const { posts } = usePostStore();
   const offset = (page - 1) * 10;
 
+  const tokenInfo = localStorage.getItem("token");
+
   const handleFilter = () => {
     setFilterList(!fliterList);
   };
@@ -23,7 +25,7 @@ function QuestionList() {
       <div className="title">
         <TitleTop>
           <h1>All Questions</h1>
-          <Link to="ask">
+          <Link to={tokenInfo ? "ask" : "login"}>
             <ButtonPrimary width={"auto"} height={"auto"} padding={"10px"}>
               Ask Question
             </ButtonPrimary>
